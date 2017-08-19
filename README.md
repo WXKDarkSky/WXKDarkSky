@@ -5,7 +5,7 @@ This Swift package is a `Decodable` layer over the Dark Sky API for quick and ea
 To be clear, this library *strictly* handles the coding of JSON data from Dark Sky into Swift structs. You’ll need to handle networking and all that on your own. (And of course, be sure to credit Dark Sky.)
 
 ## Getting started
-First, you’ll need to be using Swift 4. This code makes use of the `Codable` protocols, so the new version is a necessity. You 
+First, you’ll need to be using Swift 4. This code makes use of the `Codable` protocols, so the new version is a necessity. This also assumes some level of familiarity with Swift Package Manager.
 
 ### Swift Package Manager
 Of course, you'll need to add this package as a dependency in Swift Package Manager.
