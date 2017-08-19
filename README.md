@@ -29,7 +29,7 @@ Just get the "WXKDarkSky.swift" file out of the Sources folder and drag it into 
 Usage of WXKDarkSky is much like any JSON decoding in Swift 4:
 
     let decoder = JSONDecoder()
-    let response = try! decoder(WXKDarkSkyResponse.self, from: Data)
+    let response = try! decoder.decode(WXKDarkSkyResponse.self, from: Data)
     
     // Sample to get the current temperature
     if let currently = response.currently {
