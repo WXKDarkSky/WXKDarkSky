@@ -1,7 +1,7 @@
 import Foundation
 
 /// The `WXKDarkSkyResponse` struct contains support for quick Swift-based decoding of responses from the Dark Sky API.
-struct WXKDarkSkyResponse : Decodable {
+public struct WXKDarkSkyResponse : Decodable {
 	var latitude: Double
 	var longitude: Double
 	var timezone: String
@@ -14,7 +14,7 @@ struct WXKDarkSkyResponse : Decodable {
 }
 
 /// The `WXKDarkSkyDataPoint` struct encapsulates information about the weather at a given time from the Dark Sky API. All properties except `time` are optional.
-struct WXKDarkSkyDataPoint : Decodable {
+public struct WXKDarkSkyDataPoint : Decodable {
 	/// The UNIX time representing the beginning of the data point. For example, for current data points, this is the current time, and for daily data points, it's midnight. This property is required.
 	var time: Int
 	/// The apparent temperature (heat index or wind chill) for the data point.
@@ -100,7 +100,7 @@ internal struct WXKDarkSkyDataBlock : Decodable {
 }
 
 /// The `WXKDarkSkyFlags` struct contains metadata about your forecast request.
-struct WXKDarkSkyFlags : Decodable {
+public struct WXKDarkSkyFlags : Decodable {
 	/// If this value is present, there was an issue getting data for the request.
 	var darkSkyUnavailable: Bool?
 	/// An array of strings with identifiers for data sources used in fulfilling the request.
@@ -112,7 +112,7 @@ struct WXKDarkSkyFlags : Decodable {
 }
 
 /// The `WXKDarkSkyAlert` struct contains information about a hypothetical alert in effect at the time of the forecast request.
-struct WXKDarkSkyAlert : Decodable {
+public struct WXKDarkSkyAlert : Decodable {
 	/// A detailed description of the alert, usually the product text.
 	var description: String
 	/// The expiration time as a UNIX time, which may possibly be undefined.
