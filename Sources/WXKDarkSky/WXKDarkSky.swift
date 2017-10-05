@@ -65,6 +65,14 @@ public struct WXKDarkSkyDataPoint : Decodable {
 	public var sunsetTime: Int?
 	/// The temperature for the data point.
 	public var temperature: Double?
+    /// The daytime high temperature.
+    public var temperatureHigh: Double?
+    /// The UNIX time representing when the daytime high temperature occurs.
+    public var temperatureHighTime: Int?
+    /// The overnight low temperature.
+    public var temperatureLow: Double?
+    /// The UNIX time representing when the overnight low temperature occurs.
+    public var temperatureLowTime: Int?
 	/// The maximum temperature expected for the daily data point.
 	public var temperatureMax: Double?
 	/// The UNIX time for the maximum temperature for the daily data point.
