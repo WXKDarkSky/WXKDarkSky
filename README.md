@@ -1,4 +1,13 @@
 # WXKDarkSky
+<p align="center">
+    <a href="https://travis-ci.org/loopwxservices/WXKDarkSky"><img src="https://travis-ci.org/loopwxservices/WXKDarkSky.svg?branch=master"></a>
+    <a href="LICENSE">
+        <img src="http://img.shields.io/badge/license-MIT-brightgreen.svg" alt="MIT License">
+    </a>
+    <a href="https://swift.org">
+        <img src="http://img.shields.io/badge/swift-4.0-brightgreen.svg" alt="Swift 4">
+    </a>
+</p>
 
 This Swift package is a `Codable` layer over the Dark Sky API for quick and easy access to API response objects. It’s super straightforward and modeled after the [Dark Sky API docs](https://darksky.net/dev/docs/response). We use it in WeatherKit 2, and we thought others might find it helpful.
 
@@ -12,18 +21,18 @@ Of course, you'll need to add this package as a dependency in Swift Package Mana
 
 For Swift 4's Package Manager tools:
 
-    .package(url: "https://github.com/loopwxservices/WXKDarkSky.git", .exact("1.0.1"))
+    .package(url: "https://github.com/loopwxservices/WXKDarkSky.git", .exact("1.0.3"))
 
 Be sure to add `"WXKDarkSky"` as a dependency in the `targets` section, too.
 
 ### Carthage
-Carthage is currently not officially supported as an installation medium. We’re not saying it’s impossible because it likely isn’t, but we don’t officially support it (yet).
+Carthage is currently not officially supported as an installation medium. We’re not saying it’s impossible because it likely isn’t, but we don’t officially support it.
 
 ### CocoaPods
 CocoaPods, like Carthage, is also not officially supported for installation at this time. If interest warrants, we’ll be happy to add support.
 
 ### Manual
-Just get the "WXKDarkSky.swift" file out of the Sources folder and drag it into your Xcode project. We don’t foresee massive changes to the Dark Sky API (or therefore this code) in the near future, so you shouldn’t have to come back here often.
+Just get the "WXKDarkSky.swift" file out of the Sources folder and drag it into your Xcode project. We don’t foresee massive changes to the Dark Sky API (or therefore this code) in the near future, so you shouldn’t have to come back here often for manual updates.
 
 ## Usage
 Usage of WXKDarkSky is much like any JSON decoding in Swift 4:
