@@ -1,6 +1,6 @@
 # WXKDarkSky
 
-This Swift package is a `Decodable` layer over the Dark Sky API for quick and easy access to API response objects. It’s super straightforward and modeled after the [Dark Sky API docs](https://darksky.net/dev/docs/response). We use it in WeatherKit 2, and we thought others might find it helpful.
+This Swift package is a `Codable` layer over the Dark Sky API for quick and easy access to API response objects. It’s super straightforward and modeled after the [Dark Sky API docs](https://darksky.net/dev/docs/response). We use it in WeatherKit 2, and we thought others might find it helpful.
 
 To be clear, this library *strictly* handles the coding of JSON data from Dark Sky into Swift structs. You’ll need to handle networking and all that on your own. (And of course, be sure to credit Dark Sky.)
 
