@@ -21,7 +21,11 @@ Of course, you'll need to add this package as a dependency in Swift Package Mana
 
 For Swift 4's Package Manager tools:
 
-    .package(url: "https://github.com/loopwxservices/WXKDarkSky.git", .exact("1.0.3"))
+    .package(url: "https://github.com/loopwxservices/WXKDarkSky.git", from: "1.0.0")
+    
+If you’re courageous and you want to use the bleeding-edge version of `WXKDarkSky`, you can compile straight from the master branch (which should work fine as long as you see a “build passing” badge above) by using:
+
+    .package(url: "https://github.com/loopwxservices/WXKDarkSky.git", .branch("master"))
 
 Be sure to add `"WXKDarkSky"` as a dependency in the `targets` section, too.
 
