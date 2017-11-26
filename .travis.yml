@@ -1,0 +1,7 @@
+language: objective-c
+osx_image: xcode9
+env:
+  - TOOLCHAINS=swift
+script:
+  - swift test
+  - swift build
