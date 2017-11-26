@@ -1,7 +1,7 @@
 import Foundation
 
-/// The `WXKDarkSkyResponse` struct contains support for quick Swift-based decoding of responses from the Dark Sky API.
-public struct WXKDarkSkyResponse : Decodable {
+/// The `WXKDarkSkyResponse` struct contains support for quick Swift-based encoding/decoding of responses from the Dark Sky API.
+public struct WXKDarkSkyResponse : Codable {
 	public var latitude: Double
 	public var longitude: Double
 	public var timezone: String
@@ -14,7 +14,7 @@ public struct WXKDarkSkyResponse : Decodable {
 }
 
 /// The `WXKDarkSkyDataPoint` struct encapsulates information about the weather at a given time from the Dark Sky API. All properties except `time` are optional.
-public struct WXKDarkSkyDataPoint : Decodable {
+public struct WXKDarkSkyDataPoint : Codable {
 	/// The UNIX time representing the beginning of the data point. For example, for current data points, this is the current time, and for daily data points, it's midnight. This property is required.
 	public var time: Int
 	/// The apparent temperature (heat index or wind chill) for the data point.
@@ -98,7 +98,7 @@ public struct WXKDarkSkyDataPoint : Decodable {
 }
 
 /// The `WXKDarkSkyDataBlock` struct contains an array of data points for a period of time, such as hourly forecasts for the next 2 days or daily forecasts for the next week.
-public struct WXKDarkSkyDataBlock : Decodable {
+public struct WXKDarkSkyDataBlock : Codable {
 	/// An array of data points for the data block. This is required (but could be empty).
 	public var data: [WXKDarkSkyDataPoint]
 	/// A string summarizing the data block.
@@ -108,7 +108,7 @@ public struct WXKDarkSkyDataBlock : Decodable {
 }
 
 /// The `WXKDarkSkyFlags` struct contains metadata about your forecast request.
-public struct WXKDarkSkyFlags : Decodable {
+public struct WXKDarkSkyFlags : Codable {
 	/// If this value is present, there was an issue getting data for the request.
 	public var darkSkyUnavailable: Bool?
 	/// An array of strings with identifiers for data sources used in fulfilling the request.
@@ -120,7 +120,7 @@ public struct WXKDarkSkyFlags : Decodable {
 }
 
 /// The `WXKDarkSkyAlert` struct contains information about a hypothetical alert in effect at the time of the forecast request.
-public struct WXKDarkSkyAlert : Decodable {
+public struct WXKDarkSkyAlert : Codable {
 	/// A detailed description of the alert, usually the product text.
 	public var description: String
 	/// The expiration time as a UNIX time, which may possibly be undefined.
