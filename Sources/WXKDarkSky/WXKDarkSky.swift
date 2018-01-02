@@ -19,13 +19,25 @@ public struct WXKDarkSkyDataPoint : Codable {
 	public var time: Int
 	/// The apparent temperature (heat index or wind chill) for the data point.
 	public var apparentTemperature: Double?
+	/// For daily data points, the daytime high apparent temperature.
+	public var apparentTemperatureHigh: Double?
+	/// For daily data points, the UNIX time at which the daytime high apparent temperature occurs.
+	public var apparentTemperatureHighTime: Int?
+	/// For daily data points, the overnight low apparent temperature.
+	public var apparentTemperatureLow: Double?
+	/// For daily data points, the UNIX time at which the overnight low apparent temperature occurs.
+	public var apparentTemperatureLowTime: Int?
 	/// For daily data points, the maximum apparent temperature expected for the day.
+	@available(*, deprecated, message: "apparentTemperatureMax is deprecated; please use apparentTemperatureHigh instead.")
 	public var apparentTemperatureMax: Double?
 	/// For daily data points, the UNIX time at which the apparent temperature will peak.
+	@available(*, deprecated, message: "apparentTemperatureMaxTime is deprecated; please use apparentTemperatureHighTime instead.")
 	public var apparentTemperatureMaxTime: Int?
 	/// For daily data points, the minimum apparent temperature expected for the day.
+	@available(*, deprecated, message: "apparentTemperatureMin is deprecated; please use apparentTemperatureLow instead.")
 	public var apparentTemperatureMin: Double?
 	/// For daily data points, the UNIX time at which the apparent temperature will bottom out.
+	@available(*, deprecated, message: "apparentTemperatureMinTime is deprecated; please use apparentTemperatureLowTime instead.")
 	public var apparentTemperatureMinTime: Int?
 	/// A decimal number between 0 and 1 (inclusive) indicating the percentage of sky covered by clouds.
 	public var cloudCover: Double?
@@ -65,21 +77,25 @@ public struct WXKDarkSkyDataPoint : Codable {
 	public var sunsetTime: Int?
 	/// The temperature for the data point.
 	public var temperature: Double?
-    /// The daytime high temperature.
+    /// For daily data points, the daytime high temperature.
     public var temperatureHigh: Double?
-    /// The UNIX time representing when the daytime high temperature occurs.
+    /// For daily data points, the UNIX time representing when the daytime high temperature occurs.
     public var temperatureHighTime: Int?
-    /// The overnight low temperature.
+    /// For daily data points, the overnight low temperature.
     public var temperatureLow: Double?
-    /// The UNIX time representing when the overnight low temperature occurs.
+    /// For daily data points, the UNIX time representing when the overnight low temperature occurs.
     public var temperatureLowTime: Int?
 	/// The maximum temperature expected for the daily data point.
+	@available(*, deprecated, message: "temperatureMax is deprecated; please use temperatureHigh instead.")
 	public var temperatureMax: Double?
 	/// The UNIX time for the maximum temperature for the daily data point.
+	@available(*, deprecated, message: "temperatureMaxTime is deprecated; please use temperatureHighTime instead.")
 	public var temperatureMaxTime: Int?
 	/// The minimum temperature expected for the daily data point.
+	@available(*, deprecated, message: "temperatureMin is deprecated; please use temperatureLow instead.")
 	public var temperatureMin: Double?
 	/// The UNIX time for the minimum temperature for the daily data point.
+	@available(*, deprecated, message: "temperatureMinTime is deprecated; please use temperatureLowTime instead.")
 	public var temperatureMinTime: Int?
 	/// The UV index for the data point.
 	public var uvIndex: Int?
