@@ -6,3 +6,23 @@
 //
 
 import Foundation
+
+extension WXKDarkSky {
+	/// Sets of units supported by the Dark Sky API.
+	public enum Units : String, CustomStringConvertible {
+		/// Automatically determine units based on location.
+		case auto = "auto"
+		/// Uses U.S. (imperial) units.
+		case imperial = "us"
+		/// Uses UK units, similar to SI except miles and mph are preferred.
+		case unitedKingdom = "uk2"
+		/// Uses Canadian units, similar to SI units except velocities are in km/h.
+		case canadian = "ca"
+		/// Uses SI units.
+		case si = "si"
+		
+		public var description: String {
+			return self.rawValue
+		}
+	}
+}
