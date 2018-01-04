@@ -31,22 +31,25 @@ public class WXKDarkSkyRequest {
 				if let error = error {
 					completionHandler(nil, error)
 				} else if let data = data, let response = response as? HTTPURLResponse, response.statusCode == 200 {
-					// We successfully retrieved data from the Dark Sky API. Attempt to return it as a WXKDarkSkyResponse object.
+					// Successfully retrieved data from the Dark Sky API.
 					let decoder = JSONDecoder()
 					do {
+						// Attempt to decode the response into a WXKDarkSkyResponse object.
 						let decoded = try decoder.decode(WXKDarkSkyResponse.self, from: data)
 						completionHandler(decoded, nil)
 					} catch {
+						// Something was wrong with the response such that it could not be decoded.
 						completionHandler(nil, WXKDarkSkyError.malformedResponse)
 					}
 				} else {
-					// ...something went wrong?
+					// ...something went wrong? Received data, but the status code was not 200 (OK).
 					completionHandler(nil, WXKDarkSkyError.couldNotRetrieveData)
 				}
 			})
 			
 			dataTask?.resume()
 		} else {
+			// Some error occurred in...generating the URL. The circumstances behind this are so unlikely that this will likely never be called, but it's helpful to open a door to handle it.
 			completionHandler(nil, WXKDarkSkyError.unspecified)
 		}
 	}
