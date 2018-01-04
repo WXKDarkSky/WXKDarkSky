@@ -201,6 +201,74 @@ public struct WXKDarkSkyDataPoint : Codable {
 		}
 		windSpeed = try values.decodeIfPresent(Double.self, forKey: .windSpeed)
 	}
+	
+	public func encode(to encoder: Encoder) throws {
+		var container = encoder.container(keyedBy: CodingKeys.self)
+		let encodableTime = time.unixTime
+		try container.encode(encodableTime, forKey: .time)
+		try container.encodeIfPresent(apparentTemperature, forKey: .apparentTemperature)
+		try container.encodeIfPresent(apparentTemperatureHigh, forKey: .apparentTemperatureHigh)
+		if let apparentTemperatureHighTime = apparentTemperatureHighTime {
+			let encodableTime = apparentTemperatureHighTime.unixTime
+			try container.encode(encodableTime, forKey: .apparentTemperatureHighTime)
+		}
+		try container.encodeIfPresent(apparentTemperatureLow, forKey: .apparentTemperatureLow)
+		if let apparentTemperatureLowTime = apparentTemperatureLowTime {
+			let encodableTime = apparentTemperatureLowTime.unixTime
+			try container.encode(encodableTime, forKey: .apparentTemperatureLowTime)
+		}
+		try container.encodeIfPresent(cloudCover, forKey: .cloudCover)
+		try container.encodeIfPresent(dewPoint, forKey: .dewPoint)
+		try container.encodeIfPresent(humidity, forKey: .humidity)
+		try container.encodeIfPresent(icon, forKey: .icon)
+		try container.encodeIfPresent(moonPhase, forKey: .moonPhase)
+		try container.encodeIfPresent(nearestStormBearing, forKey: .nearestStormBearing)
+		try container.encodeIfPresent(nearestStormDistance, forKey: .nearestStormDistance)
+		try container.encodeIfPresent(ozone, forKey: .ozone)
+		try container.encodeIfPresent(precipAccumulation, forKey: .precipAccumulation)
+		try container.encodeIfPresent(precipIntensity, forKey: .precipIntensity)
+		try container.encodeIfPresent(precipIntensityMax, forKey: .precipIntensityMax)
+		if let precipIntensityMaxTime = precipIntensityMaxTime {
+			let encodableTime = precipIntensityMaxTime.unixTime
+			try container.encode(encodableTime, forKey: .precipIntensityMaxTime)
+		}
+		try container.encodeIfPresent(precipProbability, forKey: .precipProbability)
+		try container.encodeIfPresent(precipType, forKey: .precipType)
+		try container.encodeIfPresent(pressure, forKey: .pressure)
+		try container.encodeIfPresent(summary, forKey: .summary)
+		if let sunriseTime = sunriseTime {
+			let encodableTime = sunriseTime.unixTime
+			try container.encode(encodableTime, forKey: .sunriseTime)
+		}
+		if let sunsetTime = sunsetTime {
+			let encodableTime = sunsetTime.unixTime
+			try container.encode(encodableTime, forKey: .sunsetTime)
+		}
+		try container.encodeIfPresent(temperature, forKey: .temperature)
+		try container.encodeIfPresent(temperatureHigh, forKey: .temperatureHigh)
+		if let temperatureHighTime = temperatureHighTime {
+			let encodableTime = temperatureHighTime.unixTime
+			try container.encode(encodableTime, forKey: .temperatureHighTime)
+		}
+		try container.encodeIfPresent(temperatureLow, forKey: .temperatureLow)
+		if let temperatureLowTime = temperatureLowTime {
+			let encodableTime = temperatureLowTime.unixTime
+			try container.encode(encodableTime, forKey: .temperatureLowTime)
+		}
+		try container.encodeIfPresent(uvIndex, forKey: .uvIndex)
+		if let uvIndexTime = uvIndexTime {
+			let encodableTime = uvIndexTime.unixTime
+			try container.encode(encodableTime, forKey: .uvIndexTime)
+		}
+		try container.encodeIfPresent(visibility, forKey: .visibility)
+		try container.encodeIfPresent(windBearing, forKey: .windBearing)
+		try container.encodeIfPresent(windGust, forKey: .windGust)
+		if let windGustTime = windGustTime {
+			let encodableTime = windGustTime.unixTime
+			try container.encode(encodableTime, forKey: .windGustTime)
+		}
+		try container.encodeIfPresent(windSpeed, forKey: .windSpeed)
+	}
 }
 
 /// The `WXKDarkSkyDataBlock` struct contains an array of data points for a period of time, such as hourly forecasts for the next 2 days or daily forecasts for the next week.
