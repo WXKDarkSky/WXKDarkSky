@@ -58,6 +58,8 @@ WXKDarkSky includes basic networking functionality to load data from the Dark Sk
         }
     }
 
+Beyond this point, handling data is just as in the "Without networking" section.
+
 #### Request configuration
 The `loadData` method supports two parameters for configuring your request. It takes a `time` parameter, which defaults to nil, to which you may pass a `Date` object for a Time Machine request.
 
@@ -75,6 +77,8 @@ An `Options` object can be initialized with any combination of the above four. I
     WXKDarkSkyRequest.loadData(point: point, options: options) { (data, error) in
         // Handle the results here...
     }
+
+As before, handle the results as in the "Without networking" section.
 
 ### Without networking
 If you choose to use other networking code, using WXKDarkSky becomes much like any JSON decoding in Swift 4:
