@@ -16,12 +16,12 @@ It also has some helpful basic networking functionality for requesting data from
 ## Installation
 First, you’ll need to be using Swift 4. This code makes use of the `Codable` protocols, so the new version is a necessity.
 
-### Swift Package Manager
+### Swift Package Manager (recommended)
 Of course, you'll need to add this package as a dependency in Swift Package Manager.
 
 For Swift 4's Package Manager tools:
 
-    .package(url: "https://github.com/loopwxservices/WXKDarkSky.git", from: "1.0.0")
+    .package(url: "https://github.com/loopwxservices/WXKDarkSky.git", from: "2.0.0")
     
 If you’re courageous and you want to use the bleeding-edge version of WXKDarkSky, you can compile straight from the master branch (which should work fine as long as you see a “build passing” badge above) by using:
 
@@ -32,17 +32,52 @@ Of course, it should be noted that if the master branch is broken for some reaso
 Regardless of which path you choose, be sure to add `"WXKDarkSky"` as a dependency in the `targets` section.
 
 ### Manual
-Just get the WXKDarkSky.swift file out of the Sources folder and drag it into your Xcode project and add it to any relevant targets. We don’t foresee massive changes to the Dark Sky API (or therefore this code) in the near future, so you shouldn’t have to come back here often for manual updates.
+**It is ill-advised to make requests to the Dark Sky API from client-side code.** Doing so puts you at risk of compromising your API key.
+
+Just get the source files out of the Sources folder and drag them into your Xcode project, and add them to any relevant targets.
+
+We don’t foresee massive changes to the Dark Sky API (or therefore this code) in the near future, so you shouldn’t have to come back here often for manual updates.
 
 ### Carthage/CocoaPods
-We do not currently support Carthage and CocoaPods for installation. (It’s entirely possible that Carthage works already, but you’re on your own if you choose to use it.) If interest warrants, we would be happy to offer official support for either or both of these in the future.
+**It is ill-advised to make requests to the Dark Sky API from client-side code.** Doing so puts you at risk of compromising your API key.
+
+Thus, given the client-side nature of Carthage and CocoaPods, we do not plan to support Carthage or CocoaPods for installation. You can certainly try them, but you’re on your own.
 
 ## Usage
 ### With networking
-...work in progress...
+WXKDarkSky includes basic networking functionality to load data from the Dark Sky API. You can make requests to the API by making use of the `WXKDarkSkyRequest(key:).loadData` method. Here’s an example:
+
+    let request = WXKDarkSkyRequest(key: "YOURKEYHERE")
+    let point = Point(latitude: 37.4, -96.8)
+
+    request.loadData(point: point) { (data, error) in
+        if let error = error {
+            // Handle errors here...
+        } else if let data = data {
+            // Handle the received data here...
+        }
+    }
+
+#### Request configuration
+The `loadData` method supports two parameters for configuring your request. It takes a `time` parameter, which defaults to nil, to which you may pass a `Date` object for a Time Machine request.
+
+The method also takes an `options` parameter, which you can set with any of the following options:
+
+* `exclude`: Data blocks to exclude from the request.
+* `extendHourly`: Whether to extend the hourly forecast to 168 hours instead of 48 hours.
+* `language`: Language to be used in the response.
+* `units`: Units to be used in the response.
+
+An `Options` object can be initialized with any combination of the above four. If you do not include one, it will use the default setting. Here’s an example:
+    
+    let options = Options(exclude: [.minutely, .alerts], extendHourly: true, language: .german, units: .si)
+
+    WXKDarkSkyRequest.loadData(point: point, options: options) { (data, error) in
+        // Handle the results here...
+    }
 
 ### Without networking
-Using WXKDarkSky is much like any JSON decoding in Swift 4:
+If you choose to use other networking code, using WXKDarkSky becomes much like any JSON decoding in Swift 4:
 
     let decoder = JSONDecoder()
     let response = try! decoder.decode(WXKDarkSkyResponse.self, from: Data)
