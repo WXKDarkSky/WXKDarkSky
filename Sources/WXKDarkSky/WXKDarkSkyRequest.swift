@@ -46,6 +46,8 @@ public class WXKDarkSkyRequest {
 			})
 			
 			dataTask?.resume()
+		} else {
+			completionHandler(nil, WXKDarkSkyError.unspecified)
 		}
 	}
 	
