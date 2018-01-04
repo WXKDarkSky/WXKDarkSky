@@ -7,7 +7,7 @@
 
 import Foundation
 
-extension WXKDarkSky {
+extension WXKDarkSkyRequest {
 	/// Data blocks provided by the Dark Sky API. Used to exclude certain data blocks in a networking request.
 	public enum DataBlock : String, CustomStringConvertible {
 		/// The current conditions pertaining to the request.

@@ -7,7 +7,7 @@
 
 import Foundation
 
-extension WXKDarkSky {
+extension WXKDarkSkyRequest {
 	/// Languages supported by the Dark Sky API.
 	public enum Language : String, CustomStringConvertible {
 		case arabic = "ar"

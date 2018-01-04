@@ -39,9 +39,32 @@ class WXKDarkSkyTests: XCTestCase {
 			XCTFail()
 		}
     }
+	
+	func testURLBuilder() {
+		let point = WXKDarkSkyRequest.Point(latitude: 37.4, longitude: -96.5)
+		let key = "fish"
+		let options1 = WXKDarkSkyRequest.Options(exclude: [.currently, .alerts], extendHourly: true)
+		
+		if let url = WXKDarkSkyRequest(key: key).buildDarkSkyURL(point: point, options: options1) {
+			let string = String(describing: url)
+			NSLog(string)
+			XCTAssert(string == "https://api.darksky.net/forecast/\(key)/37.4,-96.5?exclude=currently,alerts&extend=hourly")
+		} else {
+			XCTFail()
+		}
+		
+		if let url = WXKDarkSkyRequest(key: key).buildDarkSkyURL(point: point) {
+			let string = String(describing: url)
+			NSLog(string)
+			XCTAssert(string == "https://api.darksky.net/forecast/\(key)/37.4,-96.5")
+		} else {
+			XCTFail()
+		}
+	}
 
 
     static var allTests = [
         ("testDecoder", testDecoder),
+		("testURLBuilder", testURLBuilder)
     ]
 }

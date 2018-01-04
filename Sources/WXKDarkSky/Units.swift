@@ -7,7 +7,7 @@
 
 import Foundation
 
-extension WXKDarkSky {
+extension WXKDarkSkyRequest {
 	/// Sets of units supported by the Dark Sky API.
 	public enum Units : String, CustomStringConvertible {
 		/// Automatically determine units based on location.

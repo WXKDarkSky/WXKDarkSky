@@ -7,7 +7,7 @@
 
 import Foundation
 
-extension WXKDarkSky {
+extension WXKDarkSkyRequest {
 	/// Encapsulates a latitude-longitude coordinate pair.
 	public struct Point : CustomStringConvertible {
 		/// A latitude coordinate.

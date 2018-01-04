@@ -7,9 +7,20 @@
 
 import Foundation
 
-extension WXKDarkSky {
+extension WXKDarkSkyRequest {
 	/// Options for loading data from the Dark Sky API.
-	public class Options {
+	public class Options: Equatable {
+		public static func ==(lhs: WXKDarkSkyRequest.Options, rhs: WXKDarkSkyRequest.Options) -> Bool {
+			if lhs.exclude == rhs.exclude &&
+			lhs.extendHourly == rhs.extendHourly &&
+			lhs.language == rhs.language &&
+			lhs.units == rhs.units {
+				return true
+			} else {
+				return false
+			}
+		}
+		
 		/// Data blocks to exclude from the response.
 		public var exclude: [DataBlock]
 		/// Indicates whether to extend the hourly forecast to a full week rather than 48 hours.
