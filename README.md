@@ -11,7 +11,7 @@
 
 This Swift package is a `Codable` layer over the Dark Sky API for quick and easy access to API response objects. It’s super straightforward and directly modeled after the [Dark Sky API docs](https://darksky.net/dev/docs/response). We use it in WeatherKit 2, and we thought others might find it helpful.
 
-To be clear, this library *strictly* handles the coding of JSON data from Dark Sky into Swift structs. You’ll need to handle networking and such on your own. (And of course, be sure to credit Dark Sky.)
+It also has some helpful basic networking functionality for requesting data from the Dark Sky API. It might not fully satisfy your networking needs, but it’s written in pure Swift, so you don’t need to worry about conflicting dependencies or anything like that. If the networking functionality in this package doesn’t cut it, you’re free to handle networking yourself and pass responses to the Codable class, `WXKDarkSkyResponse`.
 
 ## Installation
 First, you’ll need to be using Swift 4. This code makes use of the `Codable` protocols, so the new version is a necessity.
@@ -38,6 +38,10 @@ Just get the WXKDarkSky.swift file out of the Sources folder and drag it into yo
 We do not currently support Carthage and CocoaPods for installation. (It’s entirely possible that Carthage works already, but you’re on your own if you choose to use it.) If interest warrants, we would be happy to offer official support for either or both of these in the future.
 
 ## Usage
+### With networking
+...work in progress...
+
+### Without networking
 Using WXKDarkSky is much like any JSON decoding in Swift 4:
 
     let decoder = JSONDecoder()
