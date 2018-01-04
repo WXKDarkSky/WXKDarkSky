@@ -32,17 +32,17 @@ public struct WXKDarkSkyResponse : Codable {
 /// The `WXKDarkSkyDataPoint` struct encapsulates information about the weather at a given time from the Dark Sky API. All properties except `time` are optional.
 public struct WXKDarkSkyDataPoint : Codable {
 	/// The UNIX time representing the beginning of the data point. For example, for current data points, this is the current time, and for daily data points, it's midnight. This property is required.
-	public var time: Int
+	public var time: Date
 	/// The apparent temperature (heat index or wind chill) for the data point.
 	public var apparentTemperature: Double?
 	/// For daily data points, the daytime high apparent temperature.
 	public var apparentTemperatureHigh: Double?
 	/// For daily data points, the UNIX time at which the daytime high apparent temperature occurs.
-	public var apparentTemperatureHighTime: Int?
+	public var apparentTemperatureHighTime: Date?
 	/// For daily data points, the overnight low apparent temperature.
 	public var apparentTemperatureLow: Double?
 	/// For daily data points, the UNIX time at which the overnight low apparent temperature occurs.
-	public var apparentTemperatureLowTime: Int?
+	public var apparentTemperatureLowTime: Date?
 	/// A decimal number between 0 and 1 (inclusive) indicating the percentage of sky covered by clouds.
 	public var cloudCover: Double?
 	/// The dewpoint temperature in degrees Fahrenheit.
@@ -66,7 +66,7 @@ public struct WXKDarkSkyDataPoint : Codable {
 	/// For daily data points, the maximum precipitation intensity expected for the day.
 	public var precipIntensityMax: Double?
 	/// For daily data points, the UNIX time at which precipitation is expected to be heaviest.
-	public var precipIntensityMaxTime: Int?
+	public var precipIntensityMaxTime: Date?
 	/// The probability of precipitation as a decimal number between 0 and 1, inclusive.
 	public var precipProbability: Double?
 	/// The precipitation type, if precipitation is occurring.
@@ -76,23 +76,23 @@ public struct WXKDarkSkyDataPoint : Codable {
 	/// A human-readable summary of this data points.
 	public var summary: String?
 	/// For daily data points, the UNIX time at which sunrise will occur.
-	public var sunriseTime: Int?
+	public var sunriseTime: Date?
 	/// For daily data points, the UNIX time at which sunset will occur.
-	public var sunsetTime: Int?
+	public var sunsetTime: Date?
 	/// The temperature for the data point.
 	public var temperature: Double?
 	/// For daily data points, the daytime high temperature.
 	public var temperatureHigh: Double?
 	/// For daily data points, the UNIX time representing when the daytime high temperature occurs.
-	public var temperatureHighTime: Int?
+	public var temperatureHighTime: Date?
 	/// For daily data points, the overnight low temperature.
 	public var temperatureLow: Double?
 	/// For daily data points, the UNIX time representing when the overnight low temperature occurs.
-	public var temperatureLowTime: Int?
+	public var temperatureLowTime: Date?
 	/// The UV index for the data point.
 	public var uvIndex: Int?
 	/// For daily data points, the UNIX time for the maximum expected UV index.
-	public var uvIndexTime: Int?
+	public var uvIndexTime: Date?
 	/// Visibility in miles, capped at 10 miles.
 	public var visibility: Double?
 	/// The wind bearing in degrees, indicating the direction the wind is coming **from**, with 0° being north and progressing clockwise.
@@ -100,9 +100,107 @@ public struct WXKDarkSkyDataPoint : Codable {
 	/// The wind gust in miles per hour.
 	public var windGust: Double?
 	/// For daily data points, the UNIX time for the maximum expected wind gust for the day.
-	public var windGustTime: Int?
+	public var windGustTime: Date?
 	/// The wind speed in miles per hour.
 	public var windSpeed: Double?
+	
+	enum CodingKeys: String, CodingKey {
+		case time
+		case apparentTemperature
+		case apparentTemperatureHigh
+		case apparentTemperatureHighTime
+		case apparentTemperatureLow
+		case apparentTemperatureLowTime
+		case cloudCover
+		case dewPoint
+		case humidity
+		case icon
+		case moonPhase
+		case nearestStormBearing
+		case nearestStormDistance
+		case ozone
+		case precipAccumulation
+		case precipIntensity
+		case precipIntensityMax
+		case precipIntensityMaxTime
+		case precipProbability
+		case precipType
+		case pressure
+		case summary
+		case sunriseTime
+		case sunsetTime
+		case temperature
+		case temperatureHigh
+		case temperatureHighTime
+		case temperatureLow
+		case temperatureLowTime
+		case uvIndex
+		case uvIndexTime
+		case visibility
+		case windBearing
+		case windGust
+		case windGustTime
+		case windSpeed
+	}
+	
+	public init(from decoder: Decoder) throws {
+		let values = try decoder.container(keyedBy: CodingKeys.self)
+		let decodedTime = try values.decode(Int.self, forKey: .time)
+		time = Date(timeIntervalSince1970: Double(decodedTime))
+		apparentTemperature = try values.decodeIfPresent(Double.self, forKey: .apparentTemperature)
+		apparentTemperatureHigh = try values.decodeIfPresent(Double.self, forKey: .apparentTemperatureHigh)
+		if let decodedApparentTemperatureHighTime = try values.decodeIfPresent(Int.self, forKey: .apparentTemperatureHighTime) {
+			apparentTemperatureHighTime = Date(timeIntervalSince1970: Double(decodedApparentTemperatureHighTime))
+		}
+		apparentTemperatureLow = try values.decodeIfPresent(Double.self, forKey: .apparentTemperatureLow)
+		if let decodedApparentTemperatureLowTime = try values.decodeIfPresent(Int.self, forKey: .apparentTemperatureLowTime) {
+			apparentTemperatureLowTime = Date(timeIntervalSince1970: Double(decodedApparentTemperatureLowTime))
+		}
+		cloudCover = try values.decodeIfPresent(Double.self, forKey: .cloudCover)
+		dewPoint = try values.decodeIfPresent(Double.self, forKey: .dewPoint)
+		humidity = try values.decodeIfPresent(Double.self, forKey: .humidity)
+		icon = try values.decodeIfPresent(String.self, forKey: .icon)
+		moonPhase = try values.decodeIfPresent(Double.self, forKey: .moonPhase)
+		nearestStormBearing = try values.decodeIfPresent(Int.self, forKey: .nearestStormBearing)
+		nearestStormDistance = try values.decodeIfPresent(Int.self, forKey: .nearestStormDistance)
+		ozone = try values.decodeIfPresent(Double.self, forKey: .ozone)
+		precipAccumulation = try values.decodeIfPresent(Double.self, forKey: .precipAccumulation)
+		precipIntensity = try values.decodeIfPresent(Double.self, forKey: .precipIntensity)
+		precipIntensityMax = try values.decodeIfPresent(Double.self, forKey: .precipIntensityMax)
+		if let decodedPrecipIntensityMaxTime = try values.decodeIfPresent(Int.self, forKey: .precipIntensityMaxTime) {
+			precipIntensityMaxTime = Date(timeIntervalSince1970: Double(decodedPrecipIntensityMaxTime))
+		}
+		precipProbability = try values.decodeIfPresent(Double.self, forKey: .precipProbability)
+		precipType = try values.decodeIfPresent(String.self, forKey: .precipType)
+		pressure = try values.decodeIfPresent(Double.self, forKey: .pressure)
+		summary = try values.decodeIfPresent(String.self, forKey: .summary)
+		if let decodedSunriseTime = try values.decodeIfPresent(Int.self, forKey: .sunriseTime) {
+			sunriseTime = Date(timeIntervalSince1970: Double(decodedSunriseTime))
+		}
+		if let decodedSunsetTime = try values.decodeIfPresent(Int.self, forKey: .sunsetTime) {
+			sunsetTime = Date(timeIntervalSince1970: Double(decodedSunsetTime))
+		}
+		temperature = try values.decodeIfPresent(Double.self, forKey: .temperature)
+		temperatureHigh = try values.decodeIfPresent(Double.self, forKey: .temperatureHigh)
+		if let decodedTemperatureHighTime = try values.decodeIfPresent(Int.self, forKey: .temperatureHighTime) {
+			temperatureHighTime = Date(timeIntervalSince1970: Double(decodedTemperatureHighTime))
+		}
+		temperatureLow = try values.decodeIfPresent(Double.self, forKey: .temperatureLow)
+		if let decodedTemperatureLowTime = try values.decodeIfPresent(Int.self, forKey: .temperatureLowTime) {
+			temperatureLowTime = Date(timeIntervalSince1970: Double(decodedTemperatureLowTime))
+		}
+		uvIndex = try values.decodeIfPresent(Int.self, forKey: .uvIndex)
+		if let decodedUVIndexTime = try values.decodeIfPresent(Int.self, forKey: .uvIndexTime) {
+			uvIndexTime = Date(timeIntervalSince1970: Double(decodedUVIndexTime))
+		}
+		visibility = try values.decodeIfPresent(Double.self, forKey: .visibility)
+		windBearing = try values.decodeIfPresent(Int.self, forKey: .windBearing)
+		windGust = try values.decodeIfPresent(Double.self, forKey: .windGust)
+		if let decodedWindGustTime = try values.decodeIfPresent(Int.self, forKey: .windGustTime) {
+			windGustTime = Date(timeIntervalSince1970: Double(decodedWindGustTime))
+		}
+		windSpeed = try values.decodeIfPresent(Double.self, forKey: .windSpeed)
+	}
 }
 
 /// The `WXKDarkSkyDataBlock` struct contains an array of data points for a period of time, such as hourly forecasts for the next 2 days or daily forecasts for the next week.
