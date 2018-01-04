@@ -21,10 +21,18 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		F5DB40951FFCAD3F003CF981 /* Point.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5DB40931FFCAD3B003CF981 /* Point.swift */; };
+		F5DB40981FFCAD6F003CF981 /* Units.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5DB40961FFCAD6C003CF981 /* Units.swift */; };
+		F5DB409B1FFCADCB003CF981 /* DataBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5DB40991FFCAD8C003CF981 /* DataBlock.swift */; };
+		F5DB409E1FFCADF0003CF981 /* Language.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5DB409C1FFCADED003CF981 /* Language.swift */; };
+		F5DB40A11FFCAE11003CF981 /* Options.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5DB409F1FFCAE0C003CF981 /* Options.swift */; };
+		F5DB40A31FFCAF5C003CF981 /* WXKDarkSkyResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5DB40A21FFCAF5C003CF981 /* WXKDarkSkyResponse.swift */; };
+		F5DB40A51FFDD108003CF981 /* DateUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5DB40A41FFDD108003CF981 /* DateUtilities.swift */; };
+		F5F7AA671FFDE7130026DFBC /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5F7AA651FFDE6840026DFBC /* Error.swift */; };
 		OBJ_21 /* Package.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_6 /* Package.swift */; };
 		OBJ_27 /* WXKDarkSkyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_12 /* WXKDarkSkyTests.swift */; };
 		OBJ_29 /* WXKDarkSky.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "WXKDarkSky::WXKDarkSky::Product" /* WXKDarkSky.framework */; };
-		OBJ_36 /* WXKDarkSky.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_9 /* WXKDarkSky.swift */; };
+		OBJ_36 /* WXKDarkSkyRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_9 /* WXKDarkSkyRequest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,9 +53,17 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		F5DB40931FFCAD3B003CF981 /* Point.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Point.swift; sourceTree = "<group>"; };
+		F5DB40961FFCAD6C003CF981 /* Units.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Units.swift; sourceTree = "<group>"; };
+		F5DB40991FFCAD8C003CF981 /* DataBlock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataBlock.swift; sourceTree = "<group>"; };
+		F5DB409C1FFCADED003CF981 /* Language.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Language.swift; sourceTree = "<group>"; };
+		F5DB409F1FFCAE0C003CF981 /* Options.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Options.swift; sourceTree = "<group>"; };
+		F5DB40A21FFCAF5C003CF981 /* WXKDarkSkyResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WXKDarkSkyResponse.swift; sourceTree = "<group>"; };
+		F5DB40A41FFDD108003CF981 /* DateUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateUtilities.swift; sourceTree = "<group>"; };
+		F5F7AA651FFDE6840026DFBC /* Error.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Error.swift; sourceTree = "<group>"; };
 		OBJ_12 /* WXKDarkSkyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WXKDarkSkyTests.swift; sourceTree = "<group>"; };
 		OBJ_6 /* Package.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
-		OBJ_9 /* WXKDarkSky.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WXKDarkSky.swift; sourceTree = "<group>"; usesTabs = 1; };
+		OBJ_9 /* WXKDarkSkyRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WXKDarkSkyRequest.swift; sourceTree = "<group>"; usesTabs = 1; };
 		"WXKDarkSky::WXKDarkSky::Product" /* WXKDarkSky.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = WXKDarkSky.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		"WXKDarkSky::WXKDarkSkyTests::Product" /* WXKDarkSkyTests.xctest */ = {isa = PBXFileReference; lastKnownFileType = file; path = WXKDarkSkyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -97,7 +113,7 @@
 			name = Products;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		OBJ_5 /*  */ = {
+		OBJ_5 = {
 			isa = PBXGroup;
 			children = (
 				OBJ_6 /* Package.swift */,
@@ -105,7 +121,6 @@
 				OBJ_10 /* Tests */,
 				OBJ_13 /* Products */,
 			);
-			name = "";
 			sourceTree = "<group>";
 		};
 		OBJ_7 /* Sources */ = {
@@ -119,7 +134,15 @@
 		OBJ_8 /* WXKDarkSky */ = {
 			isa = PBXGroup;
 			children = (
-				OBJ_9 /* WXKDarkSky.swift */,
+				F5DB40A41FFDD108003CF981 /* DateUtilities.swift */,
+				F5DB40931FFCAD3B003CF981 /* Point.swift */,
+				F5DB40961FFCAD6C003CF981 /* Units.swift */,
+				F5DB40991FFCAD8C003CF981 /* DataBlock.swift */,
+				F5DB409C1FFCADED003CF981 /* Language.swift */,
+				F5DB409F1FFCAE0C003CF981 /* Options.swift */,
+				F5F7AA651FFDE6840026DFBC /* Error.swift */,
+				OBJ_9 /* WXKDarkSkyRequest.swift */,
+				F5DB40A21FFCAF5C003CF981 /* WXKDarkSkyResponse.swift */,
 			);
 			name = WXKDarkSky;
 			path = Sources/WXKDarkSky;
@@ -190,7 +213,7 @@
 			knownRegions = (
 				en,
 			);
-			mainGroup = OBJ_5 /*  */;
+			mainGroup = OBJ_5;
 			productRefGroup = OBJ_13 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -224,7 +247,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 0;
 			files = (
-				OBJ_36 /* WXKDarkSky.swift in Sources */,
+				F5DB40A51FFDD108003CF981 /* DateUtilities.swift in Sources */,
+				F5DB40951FFCAD3F003CF981 /* Point.swift in Sources */,
+				F5DB409E1FFCADF0003CF981 /* Language.swift in Sources */,
+				F5DB40981FFCAD6F003CF981 /* Units.swift in Sources */,
+				OBJ_36 /* WXKDarkSkyRequest.swift in Sources */,
+				F5DB40A31FFCAF5C003CF981 /* WXKDarkSkyResponse.swift in Sources */,
+				F5DB40A11FFCAE11003CF981 /* Options.swift in Sources */,
+				F5F7AA671FFDE7130026DFBC /* Error.swift in Sources */,
+				F5DB409B1FFCADCB003CF981 /* DataBlock.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
