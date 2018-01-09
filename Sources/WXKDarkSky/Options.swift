@@ -42,7 +42,7 @@ extension WXKDarkSkyRequest {
 		/// Returns the default set of options.
 		public static let defaults = Options()
 		
-		init(exclude: [DataBlock], extendHourly: Bool, language: Language, units: Units) {
+		public init(exclude: [DataBlock], extendHourly: Bool, language: Language, units: Units) {
 			self.exclude = exclude
 			self.extendHourly = extendHourly
 			self.language = language
@@ -50,63 +50,63 @@ extension WXKDarkSkyRequest {
 		}
 		
 		// Massive string of convenience inits to cover the possible combinations of initialization conditions.
-		convenience init() {
+		public convenience init() {
 			self.init(exclude: Options.excludeDefault, extendHourly: Options.extendHourlyDefault, language: Options.languageDefault, units: Options.unitsDefault)
 		}
 		
-		convenience init(exclude: [DataBlock]) {
+		public convenience init(exclude: [DataBlock]) {
 			self.init(exclude: exclude, extendHourly: Options.extendHourlyDefault, language: Options.languageDefault, units: Options.unitsDefault)
 		}
 		
-		convenience init(extendHourly: Bool) {
+		public convenience init(extendHourly: Bool) {
 			self.init(exclude: Options.excludeDefault, extendHourly: extendHourly, language: Options.languageDefault, units: Options.unitsDefault)
 		}
 		
-		convenience init(language: Language) {
+		public convenience init(language: Language) {
 			self.init(exclude: Options.excludeDefault, extendHourly: Options.extendHourlyDefault, language: language, units: Options.unitsDefault)
 		}
 		
-		convenience init(units: Units) {
+		public convenience init(units: Units) {
 			self.init(exclude: Options.excludeDefault, extendHourly: Options.extendHourlyDefault, language: Options.languageDefault, units: units)
 		}
 		
-		convenience init(exclude: [DataBlock], extendHourly: Bool) {
+		public convenience init(exclude: [DataBlock], extendHourly: Bool) {
 			self.init(exclude: exclude, extendHourly: extendHourly, language: Options.languageDefault, units: Options.unitsDefault)
 		}
 		
-		convenience init(exclude: [DataBlock], language: Language) {
+		public convenience init(exclude: [DataBlock], language: Language) {
 			self.init(exclude: exclude, extendHourly: Options.extendHourlyDefault, language: language, units: Options.unitsDefault)
 		}
 		
-		convenience init(exclude: [DataBlock], units: Units) {
+		public convenience init(exclude: [DataBlock], units: Units) {
 			self.init(exclude: exclude, extendHourly: Options.extendHourlyDefault, language: Options.languageDefault, units: units)
 		}
 		
-		convenience init(extendHourly: Bool, language: Language) {
+		public convenience init(extendHourly: Bool, language: Language) {
 			self.init(exclude: Options.excludeDefault, extendHourly: extendHourly, language: language, units: Options.unitsDefault)
 		}
 		
-		convenience init(extendHourly: Bool, units: Units) {
+		public convenience init(extendHourly: Bool, units: Units) {
 			self.init(exclude: Options.excludeDefault, extendHourly: extendHourly, language: Options.languageDefault, units: units)
 		}
 		
-		convenience init(language: Language, units: Units) {
+		public convenience init(language: Language, units: Units) {
 			self.init(exclude: Options.excludeDefault, extendHourly: Options.extendHourlyDefault, language: language, units: units)
 		}
 		
-		convenience init(exclude: [DataBlock], extendHourly: Bool, language: Language) {
+		public convenience init(exclude: [DataBlock], extendHourly: Bool, language: Language) {
 			self.init(exclude: exclude, extendHourly: extendHourly, language: language, units: Options.unitsDefault)
 		}
 		
-		convenience init(exclude: [DataBlock], extendHourly: Bool, units: Units) {
+		public convenience init(exclude: [DataBlock], extendHourly: Bool, units: Units) {
 			self.init(exclude: exclude, extendHourly: extendHourly, language: Options.languageDefault, units: units)
 		}
 		
-		convenience init(exclude: [DataBlock], language: Language, units: Units) {
+		public convenience init(exclude: [DataBlock], language: Language, units: Units) {
 			self.init(exclude: exclude, extendHourly: Options.extendHourlyDefault, language: language, units: units)
 		}
 		
-		convenience init(extendHourly: Bool, language: Language, units: Units) {
+		public convenience init(extendHourly: Bool, language: Language, units: Units) {
 			self.init(exclude: Options.excludeDefault, extendHourly: extendHourly, language: language, units: units)
 		}
 	}
