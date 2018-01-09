@@ -5,7 +5,7 @@ public class WXKDarkSkyRequest {
 	/// Your Dark Sky API key.
 	var key : String
 	
-	init(key: String) {
+	public init(key: String) {
 		self.key = key
 	}
 	
