@@ -9,13 +9,20 @@ class WXKDarkSkyTests: XCTestCase {
 		
         // This just runs some tests to make sure that the results from the JSONDecoder are what we'd expect to see.
 		let data = testJSON.data(using: .utf8)!
-		let decoder = JSONDecoder()
+		
+        let decoder = JSONDecoder()
+        decoder.dateDecodingStrategy = .secondsSince1970
+        
 		let response = try! decoder.decode(WXKDarkSkyResponse.self, from: data)
 		
 		// Is the latitude what we'd expect?
 		let latitude = response.latitude
 		XCTAssertEqual(latitude, 37.8267)
-		
+        
+        // What about the current time?
+        let currentTime = response.currently!.time
+		XCTAssertEqual(currentTime, Date(timeIntervalSince1970: 1514937653))
+        
 		// What about the current temperature?
 		if let currently = response.currently {
 			if let temperature = currently.temperature {

@@ -33,6 +33,8 @@ public class WXKDarkSkyRequest {
 				} else if let data = data, let response = response as? HTTPURLResponse, response.statusCode == 200 {
 					// Successfully retrieved data from the Dark Sky API.
 					let decoder = JSONDecoder()
+					decoder.dateDecodingStrategy = .secondsSince1970
+					
 					do {
 						// Attempt to decode the response into a WXKDarkSkyResponse object.
 						let decoded = try decoder.decode(WXKDarkSkyResponse.self, from: data)
