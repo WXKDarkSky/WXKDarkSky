@@ -62,7 +62,7 @@ public class WXKDarkSkyRequest {
 	/// - parameter time: If present, the time for a Time Machine request before or after the current time.
 	/// - parameter options: Options to use for the request.
 	/// - returns: If a URL can be created, returns a `URL`. If not, returns nil.
-	internal func buildDarkSkyURL(point: Point, time: Date? = nil, options: Options = Options.defaults) -> URL? {
+	public func buildDarkSkyURL(point: Point, time: Date? = nil, options: Options = Options.defaults) -> URL? {
 		/// String describing the requested latitude-longitude pair.
 		let coordinates = String(describing: point)
 		
