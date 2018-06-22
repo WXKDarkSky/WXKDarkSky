@@ -31,7 +31,7 @@ public struct WXKDarkSkyResponse: Codable {
     /// Converts Dark Sky response JSON into a WXKDarkSkyResponse struct, if possible.
     /// - parameter data: Dark Sky JSON `Data` to be converted.
     /// - returns: If the conversion was successful, the method returns a WXKDarkSkyReponse struct. Otherwise, the method will return nil.
-    static func converted(from data: Data) -> WXKDarkSkyResponse? {
+    public static func converted(from data: Data) -> WXKDarkSkyResponse? {
         let decoder = JSONDecoder()
         do {
             let response = try decoder.decode(WXKDarkSkyResponse.self, from: data)
