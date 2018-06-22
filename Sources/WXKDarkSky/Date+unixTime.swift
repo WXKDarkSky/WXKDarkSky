@@ -8,7 +8,7 @@
 import Foundation
 
 extension Date {
-	internal var unixTime: Int {
-		return Int(self.timeIntervalSince1970.rounded())
-	}
+    internal var unixTime: Int {
+        return Int(timeIntervalSince1970.rounded())
+    }
 }
