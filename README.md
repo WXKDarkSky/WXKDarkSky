@@ -16,47 +16,48 @@ It also has some helpful basic networking functionality for requesting data from
 ## Installation
 First, you’ll need to be using Swift 4. This code makes use of the `Codable` protocols, so the new version is a necessity.
 
+***IMPORTANT!*** Do **NOT** make requests through WXKDarkSky's networking code if the code is run client-side. Doing so puts your API key at risk of being compromised. It's best to use your own networking code to obtain Dark Sky data from a custom server-side solution that simply re-serves Dark Sky output so that your API key cannot be exposed. (You can even use WXKDarkSky's networking code with server-side Swift frameworks like Vapor or Perfect if your project allows for it.)
+
 ### Swift Package Manager (recommended)
 Of course, you'll need to add this package as a dependency in Swift Package Manager.
 
 For Swift 4's Package Manager tools:
 
-    .package(url: "https://github.com/loopwxservices/WXKDarkSky.git", from: "2.0.0")
-    
-If you’re courageous and you want to use the bleeding-edge version of WXKDarkSky, you can compile straight from the master branch (which should work fine as long as you see a “build passing” badge above) by using:
+    .package(url: "https://github.com/loopwxservices/WXKDarkSky.git", from: "2.2.0")
 
-    .package(url: "https://github.com/loopwxservices/WXKDarkSky.git", .branch("master"))
+Then, just be sure to add `"WXKDarkSky"` as a dependency in the `targets` section.
 
-Of course, it should be noted that if the master branch is broken for some reason, your project may well break, too. We try to keep the master branch builds passing, though, and it helps that the project doesn’t change rapidly.
+### CocoaPods
+Adding WXKDarkSky via CocoaPods is super-simple. Just add this line to your Podfile:
 
-Regardless of which path you choose, be sure to add `"WXKDarkSky"` as a dependency in the `targets` section.
+```ruby
+  pod 'WXKDarkSky', '~> 2.2.0'
+```
+
+### Carthage
+We do not currently provide official support for installation via Carthage. However, there is a decent chance that it works out of the box. If interest warrants, we'll be happy to add official support.
 
 ### Manual
-**It is ill-advised to make requests to the Dark Sky API from client-side code.** Doing so puts you at risk of compromising your API key.
-
 Just get the source files out of the Sources folder and drag them into your Xcode project, and add them to any relevant targets.
 
 We don’t foresee massive changes to the Dark Sky API (or therefore this code) in the near future, so you shouldn’t have to come back here often for manual updates.
-
-### Carthage/CocoaPods
-**It is ill-advised to make requests to the Dark Sky API from client-side code.** Doing so puts you at risk of compromising your API key.
-
-Thus, given the client-side nature of Carthage and CocoaPods, we do not plan to support Carthage or CocoaPods for installation. You can certainly try them, but you’re on your own.
 
 ## Usage
 ### With networking
 WXKDarkSky includes basic networking functionality to load data from the Dark Sky API. You can make requests to the API by making use of the `WXKDarkSkyRequest(key:).loadData` method. Here’s an example:
 
-    let request = WXKDarkSkyRequest(key: "YOURKEYHERE")
-    let point = Point(latitude: 37.4, -96.8)
+```swift
+let request = WXKDarkSkyRequest(key: "YOURKEYHERE")
+let point = Point(latitude: 37.4, -96.8)
 
-    request.loadData(point: point) { (data, error) in
-        if let error = error {
-            // Handle errors here...
-        } else if let data = data {
-            // Handle the received data here...
-        }
+request.loadData(point: point) { (data, error) in
+    if let error = error {
+        // Handle errors here...
+    } else if let data = data {
+        // Handle the received data here...
     }
+}
+```
 
 Beyond this point, handling data is just as in the "Without networking" section.
 
@@ -72,27 +73,41 @@ The method also takes an `options` parameter, which you can set with any of the 
 
 An `Options` object can be initialized with any combination of the above four. If you do not include one, it will use the default setting. Here’s an example:
     
-    let options = Options(exclude: [.minutely, .alerts], extendHourly: true, language: .german, units: .si)
+```swift
+let options = Options(exclude: [.minutely, .alerts], extendHourly: true, language: .german, units: .si)
 
-    WXKDarkSkyRequest.loadData(point: point, options: options) { (data, error) in
-        // Handle the results here...
+WXKDarkSkyRequest.loadData(point: point, options: options) { (response, error) in
+    if let response = response {
+        // Successful request. Sample to get the current temperature...
+        if let currently = response.currently {
+            if let temperature = currently.temperature {
+                print("Current temperature: " + String(describing: temperature))
+            }
+        }
+    } else if let error = error {
+        // Encountered an error, handle it here...
     }
+}
+```
 
 As before, handle the results as in the "Without networking" section.
 
 ### Without networking
-If you choose to use other networking code, using WXKDarkSky becomes much like any JSON decoding in Swift 4:
+If you use other networking code, using WXKDarkSky is still very simple:
 
-    let decoder = JSONDecoder()
-    let response = try! decoder.decode(WXKDarkSkyResponse.self, from: Data)
-    
+```swift
+if let response = WXKDarkSkyResponse.converted(from data: data) {
     // Sample to get the current temperature
     if let currently = response.currently {
         if let temperature = currently.temperature {
-            print("Current temperature: "+temperature.description)
+            print("Current temperature: " + String(describing: temperature))
         }
     }
-    
+}
+
+
+```
+
 The `WXKDarkSkyResponse` object structure perfectly matches that of the [documented response format](https://darksky.net/dev/docs/response) for ease of reference. In keeping with the documentation, **nearly everything is an optional value**, even if it is frequently included. **Absolutely no assumption is made about the availability of weather data!**
 
 ## Contributing
