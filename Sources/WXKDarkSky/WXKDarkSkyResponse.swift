@@ -27,6 +27,19 @@ public struct WXKDarkSkyResponse: Codable {
     public var alerts: [WXKDarkSkyAlert]?
     /// Metadata about the data returned for the requested point.
     public var flags: WXKDarkSkyFlags?
+	
+	/// Converts Dark Sky response JSON into a WXKDarkSkyResponse struct, if possible.
+	/// - parameter data: Dark Sky JSON `Data` to be converted.
+	/// - returns: If the conversion was successful, the method returns a WXKDarkSkyReponse struct. Otherwise, the method will return nil.
+	static func converted(from data: Data) -> WXKDarkSkyResponse? {
+		let decoder = JSONDecoder()
+		do {
+			let response = try decoder.decode(WXKDarkSkyResponse.self, from: data)
+			return response
+		} catch {
+			return nil
+		}
+	}
 }
 
 /// The `WXKDarkSkyDataPoint` struct encapsulates information about the weather at a given time from the Dark Sky API. All properties except `time` are optional.
