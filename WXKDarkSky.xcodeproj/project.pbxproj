@@ -27,7 +27,7 @@
 		F5DB409E1FFCADF0003CF981 /* Language.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5DB409C1FFCADED003CF981 /* Language.swift */; };
 		F5DB40A11FFCAE11003CF981 /* Options.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5DB409F1FFCAE0C003CF981 /* Options.swift */; };
 		F5DB40A31FFCAF5C003CF981 /* WXKDarkSkyResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5DB40A21FFCAF5C003CF981 /* WXKDarkSkyResponse.swift */; };
-		F5DB40A51FFDD108003CF981 /* DateUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5DB40A41FFDD108003CF981 /* DateUtilities.swift */; };
+		F5DB40A51FFDD108003CF981 /* Date+unixTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5DB40A41FFDD108003CF981 /* Date+unixTime.swift */; };
 		F5F7AA671FFDE7130026DFBC /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5F7AA651FFDE6840026DFBC /* Error.swift */; };
 		OBJ_21 /* Package.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_6 /* Package.swift */; };
 		OBJ_27 /* WXKDarkSkyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_12 /* WXKDarkSkyTests.swift */; };
@@ -59,7 +59,7 @@
 		F5DB409C1FFCADED003CF981 /* Language.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Language.swift; sourceTree = "<group>"; };
 		F5DB409F1FFCAE0C003CF981 /* Options.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Options.swift; sourceTree = "<group>"; };
 		F5DB40A21FFCAF5C003CF981 /* WXKDarkSkyResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WXKDarkSkyResponse.swift; sourceTree = "<group>"; };
-		F5DB40A41FFDD108003CF981 /* DateUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateUtilities.swift; sourceTree = "<group>"; };
+		F5DB40A41FFDD108003CF981 /* Date+unixTime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+unixTime.swift"; sourceTree = "<group>"; };
 		F5F7AA651FFDE6840026DFBC /* Error.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Error.swift; sourceTree = "<group>"; };
 		OBJ_12 /* WXKDarkSkyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WXKDarkSkyTests.swift; sourceTree = "<group>"; };
 		OBJ_6 /* Package.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
@@ -134,7 +134,7 @@
 		OBJ_8 /* WXKDarkSky */ = {
 			isa = PBXGroup;
 			children = (
-				F5DB40A41FFDD108003CF981 /* DateUtilities.swift */,
+				F5DB40A41FFDD108003CF981 /* Date+unixTime.swift */,
 				F5DB40931FFCAD3B003CF981 /* Point.swift */,
 				F5DB40961FFCAD6C003CF981 /* Units.swift */,
 				F5DB40991FFCAD8C003CF981 /* DataBlock.swift */,
@@ -247,7 +247,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 0;
 			files = (
-				F5DB40A51FFDD108003CF981 /* DateUtilities.swift in Sources */,
+				F5DB40A51FFDD108003CF981 /* Date+unixTime.swift in Sources */,
 				F5DB40951FFCAD3F003CF981 /* Point.swift in Sources */,
 				F5DB409E1FFCADF0003CF981 /* Language.swift in Sources */,
 				F5DB40981FFCAD6F003CF981 /* Units.swift in Sources */,

@@ -7,19 +7,13 @@
 
 import Foundation
 
-public enum WXKDarkSkyError : Error {
-	case couldNotRetrieveData
-	case malformedResponse
-	case unspecified
+/// The WXKDarkSkyError enum contains some possible error cases for errors that may be encountered in using WXKDarkSky.
+public enum WXKDarkSkyError: String, Error {
+	case couldNotRetrieveData = "Could not retrieve data. This error is likely on Dark Sky's end."
+	case malformedResponse = "Could not decode data from Dark Sky into a WXKDarkSkyResponse object."
+	case unspecified = "An unspecified error has occurred in creating the Dark Sky API request."
 	
 	public var localizedDescription: String {
-		switch self {
-		case .couldNotRetrieveData:
-			return "Could not retrieve data. This error is likely on Dark Sky's end."
-		case .malformedResponse:
-			return "Could not decode data from Dark Sky into a WXKDarkSkyResponse object."
-		case .unspecified:
-			return "An unspecified error has occurred in creating the Dark Sky API request."
-		}
+		return self.rawValue
 	}
 }

@@ -1,6 +1,10 @@
 import Foundation
 
-/// The WXKDarkSkyRequest class contains some utilities for working with the Dark Sky API in Swift.
+/// The WXKDarkSkyRequest class contains some networking utilities for working with the Dark Sky API. You initialize this class with your Dark Sky API key, like so:
+/// ```swift
+/// WXKDarkSkyRequest(key: "YOUR KEY HERE").loadData(...)
+/// ```
+/// - warning: This class should **never** be used in client-side code. Doing so puts your API key at risk of being compromised, and should your API key be compromised, there is no way to reset your API key without breaking deployed client-side code with the old key. Instead, use a server-side solution to obtain data from the Dark Sky API.
 public class WXKDarkSkyRequest {
 	/// Your Dark Sky API key.
 	var key : String

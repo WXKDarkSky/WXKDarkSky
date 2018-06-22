@@ -9,7 +9,7 @@ import Foundation
 
 extension WXKDarkSkyRequest {
 	/// Sets of units supported by the Dark Sky API.
-	public enum Units : String, CustomStringConvertible {
+	public enum Units: String, CustomStringConvertible {
 		/// Automatically determine units based on location.
 		case auto = "auto"
 		/// Uses U.S. (imperial) units.
