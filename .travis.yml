@@ -1,7 +1,38 @@
-language: objective-c
-osx_image: xcode9
+os:
+  - osx
+  - linux
+osx_image: xcode9.4
+language: generic
+sudo: required
+dist: trusty
+
 env:
-  - TOOLCHAINS=swift
+  global:
+    - SWIFT_VERSION=4.1.2
+  matrix:
+    - SWIFTPM_TEST=true
+    - XCODE_TEST_SDK=macosx
+    - XCODE_BUILD_SDK=iphonesimulator
+    - XCODE_BUILD_SDK=appletvsimulator
+    - XCODE_BUILD_SDK=watchsimulator
+
+matrix:
+  exclude:
+    - os: linux
+      env: XCODE_TEST_SDK=macosx
+    - os: linux
+      env: XCODE_BUILD_SDK=iphonesimulator
+    - os: linux
+      env: XCODE_BUILD_SDK=appletvsimulator
+    - os: linux
+      env: XCODE_BUILD_SDK=watchsimulator
+
+install:
+  - eval "$(curl -sL https://swiftenv.fuller.li/install.sh)"
+
 script:
-  - swift test
-  - swift build
+- if [ -n "$SWIFTPM_TEST" ]; then swift test; fi
+- if [ -n "$XCODE_BUILD_SDK" ] || [ -n "$XCODE_TEST_SDK" ]; then swift package generate-xcodeproj; fi
+- if [ -n "$XCODE_BUILD_SDK" ]; then xcodebuild -project WXKDarkSky.xcodeproj -scheme WXKDarkSky-Package build -sdk $XCODE_BUILD_SDK; fi
+- if [ -n "$XCODE_TEST_SDK" ]; then xcodebuild -project WXKDarkSky.xcodeproj -scheme WXKDarkSky-Package test -sdk $XCODE_TEST_SDK; fi
+
