@@ -1,8 +1,10 @@
 //
 //  Error.swift
-//  WXKDarkSkyPackageDescription
+//  WXKDarkSky
 //
-//  Created by Jonathan Thornton on 1/3/18.
+//  © 2018 Loop Weather Services LLC. Licensed under the MIT License.
+//
+//  Please see the included LICENSE file for details.
 //
 
 import Foundation

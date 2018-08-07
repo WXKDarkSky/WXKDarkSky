@@ -1,3 +1,12 @@
+//
+//  WXKDarkSkyRequest.swift
+//  WXKDarkSky
+//
+//  © 2018 Loop Weather Services LLC. Licensed under the MIT License.
+//
+//  Please see the included LICENSE file for details.
+//
+
 import Foundation
 
 /// The WXKDarkSkyRequest class contains some networking utilities for working with the Dark Sky API. You initialize this class with your Dark Sky API key, like so:
