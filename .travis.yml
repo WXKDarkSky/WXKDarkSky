@@ -1,7 +1,7 @@
 os:
   - osx
   - linux
-osx_image: xcode9.4
+osx_image: xcode10.1
 language: generic
 sudo: required
 dist: trusty
@@ -9,6 +9,7 @@ dist: trusty
 env:
   global:
     - SWIFT_VERSION=4.1.2
+    - SWIFT_VERSION=4.2
   matrix:
     - SWIFTPM_TEST=true
     - XCODE_TEST_SDK=macosx
