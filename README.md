@@ -1,7 +1,7 @@
 # WXKDarkSky
 <p align="center">
     <a href="https://travis-ci.org/loopwxservices/WXKDarkSky"><img src="https://travis-ci.org/loopwxservices/WXKDarkSky.svg?branch=master"></a>
-    <a href="LICENSE">
+    <a href="https://github.com/loopwxservices/WXKDarkSky/blob/master/LICENSE">
         <img src="http://img.shields.io/badge/license-MIT-brightgreen.svg" alt="MIT License">
     </a>
     <a href="https://swift.org">
