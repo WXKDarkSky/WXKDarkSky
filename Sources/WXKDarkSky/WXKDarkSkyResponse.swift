@@ -35,6 +35,7 @@ public struct WXKDarkSkyResponse: Codable {
     /// - returns: If the conversion was successful, the method returns a WXKDarkSkyReponse struct. Otherwise, the method will return nil.
     public static func converted(from data: Data) -> WXKDarkSkyResponse? {
         let decoder = JSONDecoder()
+        decoder.dateDecodingStrategy = .secondsSince1970
         do {
             let response = try decoder.decode(WXKDarkSkyResponse.self, from: data)
             return response
