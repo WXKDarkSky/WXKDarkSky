@@ -9,9 +9,6 @@
 
 import Foundation
 
-@available(*, deprecated, renamed: "DarkSkyResponse")
-public typealias WXKDarkSkyResponse = DarkSkyResponse
-
 /// The `DarkSkyResponse` struct contains support for quick Swift-based encoding/decoding of responses from the Dark Sky API.
 public struct DarkSkyResponse: Codable {
     /// The requested point's latitude.

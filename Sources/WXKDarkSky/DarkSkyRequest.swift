@@ -9,9 +9,6 @@
 
 import Foundation
 
-@available(*, deprecated, renamed: "DarkSkyRequest")
-public typealias WXKDarkSkyRequest = DarkSkyRequest
-
 /// The DarkSkyRequest class contains some networking utilities for working with the Dark Sky API. You initialize this class with your Dark Sky API key, like so:
 /// ```swift
 /// DarkSkyRequest(key: "YOUR KEY HERE").loadData(...)
@@ -63,22 +60,6 @@ public class DarkSkyRequest {
             // Some error occurred in...generating the URL. The circumstances behind this are so unlikely that this will likely never be called, but it's helpful to open a door to handle it.
             completionHandler(nil, DarkSkyError.unspecified)
         }
-    }
-    
-    /**
-     Builds a URL for a Dark Sky API requests.
-     
-     - note: This method is deprecated in WXKDarkSky 2.4.0 and will be removed in a future release. Use `buildURL(point:time:options:) instead.
-     
-     - parameter key: The API key to use for the request.
-     - parameter point: A latitude-longitude pair for the request.
-     - parameter time: If present, the time for a Time Machine request before or after the current time.
-     - parameter options: Options to use for the request.
-     - returns: If a URL can be created, returns a `URL`. If not, returns nil.
-     */
-    @available(*, deprecated, renamed: "buildURL(point:time:options:)")
-    public func buildDarkSkyURL(point: Point, time: Date? = nil, options: Options = Options.defaults) -> URL? {
-        return buildURL(point: point, time: time, options: options)
     }
 
     /**
