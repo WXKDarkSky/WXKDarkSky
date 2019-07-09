@@ -9,7 +9,7 @@
 Pod::Spec.new do |s|
 
   s.name         = "WXKDarkSky"
-  s.version      = "2.2.1"
+  s.version      = "2.3.0"
   s.summary      = "A pure-Swift Codable layer over the Dark Sky API."
   s.description  = <<-DESC
                    WXKDarkSky is a simple library written completely in Swift that
@@ -24,5 +24,5 @@ DESC
   s.source       = { :git => "https://github.com/loopwxservices/WXKDarkSky.git", :tag => "#{s.version}" }
   s.source_files  = "Sources/**/*.{swift}"
   s.ios.deployment_target = "8.0"
-  s.swift_version = "4.0"
+  s.swift_version = "5.0"
 end
