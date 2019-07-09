@@ -9,50 +9,48 @@ class WXKDarkSkyTests: XCTestCase {
 		
         // This just runs some tests to make sure that the results from the JSONDecoder are what we'd expect to see.
 		let data = testJSON.data(using: .utf8)!
-		
-        let decoder = JSONDecoder()
-        decoder.dateDecodingStrategy = .secondsSince1970
         
-		let response = try! decoder.decode(WXKDarkSkyResponse.self, from: data)
+        if let response = DarkSkyResponse(data: data) {
 		
-		// Is the latitude what we'd expect?
-		let latitude = response.latitude
-		XCTAssertEqual(latitude, 37.8267)
-        
-        // What about the current time?
-        let currentTime = response.currently!.time
-		XCTAssertEqual(currentTime, Date(timeIntervalSince1970: 1514937653))
-        
-		// What about the current temperature?
-		if let currently = response.currently {
-			if let temperature = currently.temperature {
-				XCTAssertEqual(temperature, 59.35)
-			} else {
-				XCTFail()
-			}
-		} else {
-			XCTFail()
-		}
-		
-		// And what about "tomorrow's" high temperature?
-		if let daily = response.daily {
-			let tomorrow = daily.data[1]
-			if let tomorrowHigh = tomorrow.temperatureHigh {
-				XCTAssertEqual(tomorrowHigh, 58.98)
-			} else {
-				XCTFail()
-			}
-		} else {
-			XCTFail()
-		}
+            // Is the latitude what we'd expect?
+            let latitude = response.latitude
+            XCTAssertEqual(latitude, 37.8267)
+            
+            // What about the current time?
+            let currentTime = response.currently!.time
+            XCTAssertEqual(currentTime, Date(timeIntervalSince1970: 1514937653))
+            
+            // What about the current temperature?
+            if let currently = response.currently {
+                if let temperature = currently.temperature {
+                    XCTAssertEqual(temperature, 59.35)
+                } else {
+                    XCTFail()
+                }
+            } else {
+                XCTFail()
+            }
+            
+            // And what about "tomorrow's" high temperature?
+            if let daily = response.daily {
+                let tomorrow = daily.data[1]
+                if let tomorrowHigh = tomorrow.temperatureHigh {
+                    XCTAssertEqual(tomorrowHigh, 58.98)
+                } else {
+                    XCTFail()
+                }
+            } else {
+                XCTFail()
+            }
+        }
     }
 	
 	func testURLBuilder() {
-		let point = WXKDarkSkyRequest.Point(latitude: 37.4, longitude: -96.5)
+        let point = DarkSkyRequest.Point(latitude: 37.4, longitude: -96.5)
 		let key = "fish"
-		let options = WXKDarkSkyRequest.Options(exclude: [.currently, .alerts], extendHourly: true)
+        let options = DarkSkyRequest.Options(exclude: [.currently, .alerts], extendHourly: true)
 		
-		if let url = WXKDarkSkyRequest(key: key).buildDarkSkyURL(point: point, options: options) {
+        if let url = DarkSkyRequest(key: key).buildDarkSkyURL(point: point, options: options) {
 			let string = String(describing: url)
 			NSLog(string)
 			XCTAssert(string == "https://api.darksky.net/forecast/\(key)/37.4,-96.5?exclude=currently,alerts&extend=hourly")
@@ -60,7 +58,7 @@ class WXKDarkSkyTests: XCTestCase {
 			XCTFail()
 		}
 		
-		if let url = WXKDarkSkyRequest(key: key).buildDarkSkyURL(point: point) {
+        if let url = DarkSkyRequest(key: key).buildDarkSkyURL(point: point) {
 			let string = String(describing: url)
 			NSLog(string)
 			XCTAssert(string == "https://api.darksky.net/forecast/\(key)/37.4,-96.5")

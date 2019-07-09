@@ -30,7 +30,7 @@ public class DarkSkyRequest {
     /// - parameter time: The time for a Time Machine request; defaults to nil for current data.
     /// - parameter options: A set of options for fulfilling the request, such as units and language.
     /// - parameter completionHandler: A code block to handle the successful completion, or errors in completion, of the request.
-    public func loadData(point: Point, time: Date? = nil, options: Options = Options.defaults, completionHandler: @escaping (WXKDarkSkyResponse?, Error?) -> Void) {
+    public func loadData(point: Point, time: Date? = nil, options: Options = Options.defaults, completionHandler: @escaping (DarkSkyResponse?, Error?) -> Void) {
         // Set up a data task variable.
         var dataTask: URLSessionDataTask?
 
@@ -47,16 +47,9 @@ public class DarkSkyRequest {
                 if let error = error {
                     completionHandler(nil, error)
                 } else if let data = data, let response = response as? HTTPURLResponse, response.statusCode == 200 {
-                    // Successfully retrieved data from the Dark Sky API.
-                    let decoder = JSONDecoder()
-                    decoder.dateDecodingStrategy = .secondsSince1970
-
-                    do {
-                        // Attempt to decode the response into a WXKDarkSkyResponse object.
-                        let decoded = try decoder.decode(WXKDarkSkyResponse.self, from: data)
-                        completionHandler(decoded, nil)
-                    } catch {
-                        // Something was wrong with the response such that it could not be decoded.
+                    if let darkSkyResponse = DarkSkyResponse(data: data) {
+                        completionHandler(darkSkyResponse, nil)
+                    } else {
                         completionHandler(nil, DarkSkyError.malformedResponse)
                     }
                 } else {
