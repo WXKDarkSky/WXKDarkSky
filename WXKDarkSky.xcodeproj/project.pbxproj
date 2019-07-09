@@ -62,7 +62,6 @@
 		OBJ_16 /* DarkSkyRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DarkSkyRequest.swift; sourceTree = "<group>"; };
 		OBJ_17 /* DarkSkyResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DarkSkyResponse.swift; sourceTree = "<group>"; };
 		OBJ_20 /* WXKDarkSkyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WXKDarkSkyTests.swift; sourceTree = "<group>"; };
-		OBJ_21 /* WXKDarkSky */ = {isa = PBXFileReference; lastKnownFileType = text; path = WXKDarkSky; sourceTree = SOURCE_ROOT; };
 		OBJ_6 /* Package.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
 		OBJ_9 /* DataBlock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataBlock.swift; sourceTree = "<group>"; };
 		"WXKDarkSky::WXKDarkSky::Product" /* WXKDarkSky.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = WXKDarkSky.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -114,16 +113,14 @@
 			name = Products;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		OBJ_5 /*  */ = {
+		OBJ_5 = {
 			isa = PBXGroup;
 			children = (
 				OBJ_6 /* Package.swift */,
 				OBJ_7 /* Sources */,
 				OBJ_18 /* Tests */,
-				OBJ_21 /* WXKDarkSky */,
 				OBJ_22 /* Products */,
 			);
-			name = "";
 			sourceTree = "<group>";
 		};
 		OBJ_7 /* Sources */ = {
@@ -225,7 +222,7 @@
 				English,
 				en,
 			);
-			mainGroup = OBJ_5 /*  */;
+			mainGroup = OBJ_5;
 			productRefGroup = OBJ_22 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
