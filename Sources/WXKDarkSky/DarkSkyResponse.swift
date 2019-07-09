@@ -12,7 +12,7 @@ import Foundation
 @available(*, deprecated, renamed: "DarkSkyResponse")
 public typealias WXKDarkSkyResponse = DarkSkyResponse
 
-/// The `WXKDarkSkyResponse` struct contains support for quick Swift-based encoding/decoding of responses from the Dark Sky API.
+/// The `DarkSkyResponse` struct contains support for quick Swift-based encoding/decoding of responses from the Dark Sky API.
 public struct DarkSkyResponse: Codable {
     /// The requested point's latitude.
     public var latitude: Double
@@ -21,22 +21,22 @@ public struct DarkSkyResponse: Codable {
     /// The requested point's timezone.
     public var timezone: String
     /// Current conditions for the requested point.
-    public var currently: WXKDarkSkyDataPoint?
+    public var currently: DarkSkyDataPoint?
     /// Minute-by-minute forecast for the next hour at the requested point.
-    public var minutely: WXKDarkSkyDataBlock?
+    public var minutely: DarkSkyDataBlock?
     /// Hourly forecast for the next 48 hours at the requested point.
-    public var hourly: WXKDarkSkyDataBlock?
+    public var hourly: DarkSkyDataBlock?
     /// Daily forecast for the next week at the requested point.
-    public var daily: WXKDarkSkyDataBlock?
+    public var daily: DarkSkyDataBlock?
     /// Any active alerts for the requested point.
-    public var alerts: [WXKDarkSkyAlert]?
+    public var alerts: [DarkSkyAlert]?
     /// Metadata about the data returned for the requested point.
-    public var flags: WXKDarkSkyFlags?
+    public var flags: DarkSkyFlags?
     
     /**
-     Creates a WXKDarkSkyResponse struct from Dark Sky JSON data, if possible. This initializer is simply a wrapper around a `JSONDecoder`.
+     Creates a DarkSkyResponse struct from Dark Sky JSON data, if possible. This initializer is simply a wrapper around a `JSONDecoder`.
      
-     This initializer will fail if the Dark Sky JSON provided to it cannot be decoded by a `JSONDecoder` into a `WXKDarkSkyResponse` object for whatever reason, such as an incomplete download or other badly formatted JSON.
+     This initializer will fail if the Dark Sky JSON provided to it cannot be decoded by a `JSONDecoder` into a `DarkSkyResponse` object for whatever reason, such as an incomplete download or other badly formatted JSON.
      
      - parameter data: Dark Sky JSON `Data` to be converted.
     */
@@ -60,14 +60,14 @@ public struct DarkSkyResponse: Codable {
     }
 
     /**
-     Converts Dark Sky response JSON into a WXKDarkSkyResponse struct, if possible.
+     Converts Dark Sky response JSON into a DarkSkyResponse struct, if possible.
      
-     This method will fail if the Dark Sky JSON provided to it cannot be decoded by a `JSONDecoder` into a `WXKDarkSkyResponse` object for whatever reason, such as an incomplete download or other badly formatted JSON.
+     This method will fail if the Dark Sky JSON provided to it cannot be decoded by a `JSONDecoder` into a `DarkSkyResponse` object for whatever reason, such as an incomplete download or other badly formatted JSON.
      
      - note: This method is deprecated in WXKDarkSky 2.4.0 and will be removed in a future release. Instead, use `init(data:)`. Thus, any instances of `WXKDarkSkyResponse.converted(from: Data)` can be replaced with `DarkSkyResponse(data: Data)`.
      
      - parameter data: Dark Sky JSON `Data` to be converted.
-     - returns: If the conversion was successful, the method returns a WXKDarkSkyReponse struct. Otherwise, the method will return nil.
+     - returns: If the conversion was successful, the method returns a DarkSkyReponse struct. Otherwise, the method will return nil.
     */
     @available(*, deprecated, message: "converted(from:) is deprecated and will be removed in a future release. Please use init(data:) instead.")
     public static func converted(from data: Data) -> DarkSkyResponse? {
@@ -82,8 +82,8 @@ public struct DarkSkyResponse: Codable {
     }
 }
 
-/// The `WXKDarkSkyDataPoint` struct encapsulates information about the weather at a given time from the Dark Sky API. All properties except `time` are optional.
-public struct WXKDarkSkyDataPoint: Codable {
+/// The `DarkSkyDataPoint` struct encapsulates information about the weather at a given time from the Dark Sky API. All properties except `time` are optional.
+public struct DarkSkyDataPoint: Codable {
     /// The UNIX time representing the beginning of the data point. For example, for current data points, this is the current time, and for daily data points, it's midnight. This property is required.
     public var time: Date
     /// The apparent temperature (heat index or wind chill) for the data point.
@@ -158,18 +158,18 @@ public struct WXKDarkSkyDataPoint: Codable {
     public var windSpeed: Double?
 }
 
-/// The `WXKDarkSkyDataBlock` struct contains an array of data points for a period of time, such as hourly forecasts for the next 2 days or daily forecasts for the next week.
-public struct WXKDarkSkyDataBlock: Codable {
+/// The `DarkSkyDataBlock` struct contains an array of data points for a period of time, such as hourly forecasts for the next 2 days or daily forecasts for the next week.
+public struct DarkSkyDataBlock: Codable {
     /// An array of data points for the data block. This is required (but could be empty).
-    public var data: [WXKDarkSkyDataPoint]
+    public var data: [DarkSkyDataPoint]
     /// A string summarizing the data block.
     public var summary: String?
     /// An icon name from Dark Sky summarizing the data block.
     public var icon: String?
 }
 
-/// The `WXKDarkSkyFlags` struct contains metadata about your forecast request.
-public struct WXKDarkSkyFlags: Codable {
+/// The `DarkSkyFlags` struct contains metadata about your forecast request.
+public struct DarkSkyFlags: Codable {
     /// If this value is present, there was an issue getting data for the request.
     public var darkSkyUnavailable: Bool?
     /// An array of strings with identifiers for data sources used in fulfilling the request.
@@ -180,8 +180,8 @@ public struct WXKDarkSkyFlags: Codable {
     public var units: String
 }
 
-/// The `WXKDarkSkyAlert` struct contains information about a hypothetical alert in effect at the time of the forecast request.
-public struct WXKDarkSkyAlert: Codable {
+/// The `DarkSkyAlert` struct contains information about a hypothetical alert in effect at the time of the forecast request.
+public struct DarkSkyAlert: Codable {
     /// A detailed description of the alert, usually the product text.
     public var description: String
     /// The expiration time as a UNIX time, which may possibly be undefined.

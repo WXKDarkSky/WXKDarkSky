@@ -50,7 +50,7 @@ class WXKDarkSkyTests: XCTestCase {
 		let key = "fish"
         let options = DarkSkyRequest.Options(exclude: [.currently, .alerts], extendHourly: true)
 		
-        if let url = DarkSkyRequest(key: key).buildDarkSkyURL(point: point, options: options) {
+        if let url = DarkSkyRequest(key: key).buildURL(point: point, options: options) {
 			let string = String(describing: url)
 			NSLog(string)
 			XCTAssert(string == "https://api.darksky.net/forecast/\(key)/37.4,-96.5?exclude=currently,alerts&extend=hourly")
@@ -58,7 +58,7 @@ class WXKDarkSkyTests: XCTestCase {
 			XCTFail()
 		}
 		
-        if let url = DarkSkyRequest(key: key).buildDarkSkyURL(point: point) {
+        if let url = DarkSkyRequest(key: key).buildURL(point: point) {
 			let string = String(describing: url)
 			NSLog(string)
 			XCTAssert(string == "https://api.darksky.net/forecast/\(key)/37.4,-96.5")
