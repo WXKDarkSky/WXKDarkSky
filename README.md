@@ -23,7 +23,7 @@ Of course, you'll need to add this package as a dependency in Swift Package Mana
 
 For Swift 4's Package Manager tools:
 
-    .package(url: "https://github.com/loopwxservices/WXKDarkSky.git", from: "2.3.0")
+    .package(url: "https://github.com/loopwxservices/WXKDarkSky.git", from: "2.4.0")
 
 Then, just be sure to add `"WXKDarkSky"` as a dependency in the `targets` section.
 
@@ -31,7 +31,7 @@ Then, just be sure to add `"WXKDarkSky"` as a dependency in the `targets` sectio
 Adding WXKDarkSky via CocoaPods is super-simple. Just add this line to your Podfile:
 
 ```ruby
-pod 'WXKDarkSky', '~> 2.3.0'
+pod 'WXKDarkSky', '~> 2.4.0'
 ```
 
 ### Carthage
@@ -41,16 +41,16 @@ We do not currently provide official support for installation via Carthage. Howe
 Just get the source files out of the Sources folder and drag them into your Xcode project, and add them to any relevant targets. Just make sure to keep updated should changes be made to the Dark Sky API.
 
 ## Usage
-The `WXKDarkSkyResponse` object structure perfectly matches that of the [documented response format](https://darksky.net/dev/docs/response) for ease of reference. In keeping with the documentation, **nearly everything is an optional value**, even if it is frequently included. **Absolutely no assumption is made about the availability of weather data!**
+The `DarkSkyResponse` object structure should perfectly match that of the [documented response format](https://darksky.net/dev/docs/response) for ease of reference. In keeping with the documentation, **nearly everything is an optional value**, even if it is frequently included. **Absolutely no assumption is made about the availability of weather data!**
 
 ### With networking
 ***IMPORTANT!*** Do **NOT** make requests through WXKDarkSky's networking code if the code is run client-side. Doing so puts your API key at risk of being compromised. It's best to use your own networking code to obtain Dark Sky data from a custom server-side solution that simply re-serves Dark Sky output so that your API key cannot be exposed. (You can even use WXKDarkSky's networking code with server-side Swift frameworks like Vapor or Perfect if your project allows for it.)
 
-WXKDarkSky includes basic networking functionality to load data from the Dark Sky API. You can make requests to the API by making use of the `WXKDarkSkyRequest(key:).loadData` method. Here’s an example:
+WXKDarkSky includes basic networking functionality to load data from the Dark Sky API. You can make requests to the API by making use of the `DarkSkyRequest(key:).loadData` method. Here’s an example:
 
 ```swift
-let request = WXKDarkSkyRequest(key: "YOURKEYHERE")
-let point = Point(latitude: 37.4, -96.8)
+let request = DarkSkyRequest(key: "YOURKEYHERE")
+let point = DarkSkyRequest.Point(latitude: 37.4, -96.8)
 
 request.loadData(point: point) { (data, error) in
     if let error = error {
@@ -76,9 +76,9 @@ It also takes an optional `options` parameter which you can set with any of the 
 An `Options` object can be initialized with any combination of the above four. If you do not include one, it will use the default setting. You can also use `Options.defaults` to access the default options (for example, `Options.defaults.extendHourly`). Here’s an example:
     
 ```swift
-let options = Options(exclude: [.minutely, .alerts], extendHourly: true, language: .german, units: .si)
+let options = DarkSkyRequest.Options(exclude: [.minutely, .alerts], extendHourly: true, language: .german, units: .si)
 
-WXKDarkSkyRequest.loadData(point: point, options: options) { (response, error) in
+DarkSkyRequest.loadData(point: point, options: options) { (response, error) in
     if let response = response {
         // Successful request. Sample to get the current temperature...
         if let currently = response.currently {
@@ -95,10 +95,10 @@ WXKDarkSkyRequest.loadData(point: point, options: options) { (response, error) i
 As before, handle the results as in the "Without networking" section.
 
 ### Without networking
-If you use other networking code, using WXKDarkSky is still very simple:
+If you use other networking code, using DarkSky is still very simple:
 
 ```swift
-if let response = WXKDarkSkyResponse.converted(from data: data) {
+if let response = DarkSkyResponse(data: data) {
     // Sample to get the current temperature
     if let currently = response.currently {
         if let temperature = currently.temperature {
