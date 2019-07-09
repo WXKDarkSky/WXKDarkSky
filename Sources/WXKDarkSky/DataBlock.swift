@@ -2,14 +2,14 @@
 //  DataBlock.swift
 //  WXKDarkSky
 //
-//  © 2018 Loop Weather Services LLC. Licensed under the MIT License.
+//  © 2019 Loop Weather Services LLC. Licensed under the MIT License.
 //
 //  Please see the included LICENSE file for details.
 //
 
 import Foundation
 
-extension WXKDarkSkyRequest {
+extension DarkSkyRequest {
     /// Data blocks provided by the Dark Sky API. Used to exclude certain data blocks in a networking request.
     public enum DataBlock: String, CustomStringConvertible {
         /// The current conditions pertaining to the request.

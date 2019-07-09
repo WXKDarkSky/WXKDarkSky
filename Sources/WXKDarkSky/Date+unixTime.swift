@@ -10,6 +10,9 @@
 import Foundation
 
 extension Date {
+    /**
+     Returns the Unix time as an integer.
+    */
     internal var unixTime: Int {
         return Int(timeIntervalSince1970.rounded())
     }

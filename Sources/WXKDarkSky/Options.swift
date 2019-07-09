@@ -2,17 +2,17 @@
 //  Options.swift
 //  WXKDarkSky
 //
-//  © 2018 Loop Weather Services LLC. Licensed under the MIT License.
+//  © 2019 Loop Weather Services LLC. Licensed under the MIT License.
 //
 //  Please see the included LICENSE file for details.
 //
 
 import Foundation
 
-extension WXKDarkSkyRequest {
+extension DarkSkyRequest {
     /// Options for loading data from the Dark Sky API.
     public class Options: Equatable {
-        public static func == (lhs: WXKDarkSkyRequest.Options, rhs: WXKDarkSkyRequest.Options) -> Bool {
+        public static func == (lhs: DarkSkyRequest.Options, rhs: DarkSkyRequest.Options) -> Bool {
             if lhs.exclude == rhs.exclude &&
                 lhs.extendHourly == rhs.extendHourly &&
                 lhs.language == rhs.language &&

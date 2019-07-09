@@ -1,20 +1,23 @@
 //
-//  WXKDarkSkyRequest.swift
+//  DarkSkyRequest.swift
 //  WXKDarkSky
 //
-//  © 2018 Loop Weather Services LLC. Licensed under the MIT License.
+//  © 2019 Loop Weather Services LLC. Licensed under the MIT License.
 //
 //  Please see the included LICENSE file for details.
 //
 
 import Foundation
 
+@available(*, deprecated, renamed: "DarkSkyRequest")
+public typealias WXKDarkSkyRequest = DarkSkyRequest
+
 /// The WXKDarkSkyRequest class contains some networking utilities for working with the Dark Sky API. You initialize this class with your Dark Sky API key, like so:
 /// ```swift
 /// WXKDarkSkyRequest(key: "YOUR KEY HERE").loadData(...)
 /// ```
 /// - warning: This class should **never** be used in client-side code. Doing so puts your API key at risk of being compromised, and should your API key be compromised, there is no way to reset your API key without breaking deployed client-side code with the old key. Instead, use a server-side solution to obtain data from the Dark Sky API.
-public class WXKDarkSkyRequest {
+public class DarkSkyRequest {
     /// Your Dark Sky API key.
     var key: String
 
@@ -54,18 +57,18 @@ public class WXKDarkSkyRequest {
                         completionHandler(decoded, nil)
                     } catch {
                         // Something was wrong with the response such that it could not be decoded.
-                        completionHandler(nil, WXKDarkSkyError.malformedResponse)
+                        completionHandler(nil, DarkSkyError.malformedResponse)
                     }
                 } else {
                     // ...something went wrong? Received data, but the status code was not 200 (OK).
-                    completionHandler(nil, WXKDarkSkyError.couldNotRetrieveData)
+                    completionHandler(nil, DarkSkyError.couldNotRetrieveData)
                 }
             })
 
             dataTask?.resume()
         } else {
             // Some error occurred in...generating the URL. The circumstances behind this are so unlikely that this will likely never be called, but it's helpful to open a door to handle it.
-            completionHandler(nil, WXKDarkSkyError.unspecified)
+            completionHandler(nil, DarkSkyError.unspecified)
         }
     }
 

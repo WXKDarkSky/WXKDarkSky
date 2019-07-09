@@ -1,16 +1,19 @@
 //
-//  WXKDarkSkyResponse.swift
+//  DarkSkyResponse.swift
 //  WXKDarkSky
 //
-//  © 2018 Loop Weather Services LLC. Licensed under the MIT License.
+//  © 2019 Loop Weather Services LLC. Licensed under the MIT License.
 //
 //  Please see the included LICENSE file for details.
 //
 
 import Foundation
 
+@available(*, deprecated, renamed: "DarkSkyResponse")
+public typealias WXKDarkSkyResponse = DarkSkyResponse
+
 /// The `WXKDarkSkyResponse` struct contains support for quick Swift-based encoding/decoding of responses from the Dark Sky API.
-public struct WXKDarkSkyResponse: Codable {
+public struct DarkSkyResponse: Codable {
     /// The requested point's latitude.
     public var latitude: Double
     /// The requested point's longitude.
@@ -29,15 +32,49 @@ public struct WXKDarkSkyResponse: Codable {
     public var alerts: [WXKDarkSkyAlert]?
     /// Metadata about the data returned for the requested point.
     public var flags: WXKDarkSkyFlags?
-
-    /// Converts Dark Sky response JSON into a WXKDarkSkyResponse struct, if possible.
-    /// - parameter data: Dark Sky JSON `Data` to be converted.
-    /// - returns: If the conversion was successful, the method returns a WXKDarkSkyReponse struct. Otherwise, the method will return nil.
-    public static func converted(from data: Data) -> WXKDarkSkyResponse? {
+    
+    /**
+     Creates a WXKDarkSkyResponse struct from Dark Sky JSON data, if possible. This initializer is simply a wrapper around a `JSONDecoder`.
+     
+     This initializer will fail if the Dark Sky JSON provided to it cannot be decoded by a `JSONDecoder` into a `WXKDarkSkyResponse` object for whatever reason, such as an incomplete download or other badly formatted JSON.
+     
+     - parameter data: Dark Sky JSON `Data` to be converted.
+    */
+    public init?(data: Data) {
         let decoder = JSONDecoder()
         decoder.dateDecodingStrategy = .secondsSince1970
         do {
-            let response = try decoder.decode(WXKDarkSkyResponse.self, from: data)
+            let response = try decoder.decode(DarkSkyResponse.self, from: data)
+            self.latitude = response.latitude
+            self.longitude = response.longitude
+            self.timezone = response.timezone
+            self.currently = response.currently
+            self.minutely = response.minutely
+            self.hourly = response.hourly
+            self.daily = response.daily
+            self.alerts = response.alerts
+            self.flags = response.flags
+        } catch {
+            return nil
+        }
+    }
+
+    /**
+     Converts Dark Sky response JSON into a WXKDarkSkyResponse struct, if possible.
+     
+     This method will fail if the Dark Sky JSON provided to it cannot be decoded by a `JSONDecoder` into a `WXKDarkSkyResponse` object for whatever reason, such as an incomplete download or other badly formatted JSON.
+     
+     - note: This method is deprecated in WXKDarkSky 2.4.0 and will be removed in a future release. Instead, use `init(data:)`. Thus, any instances of `WXKDarkSkyResponse.converted(from: Data)` can be replaced with `DarkSkyResponse(data: Data)`.
+     
+     - parameter data: Dark Sky JSON `Data` to be converted.
+     - returns: If the conversion was successful, the method returns a WXKDarkSkyReponse struct. Otherwise, the method will return nil.
+    */
+    @available(*, deprecated, message: "converted(from:) is deprecated and will be removed in a future release. Please use init(data:) instead.")
+    public static func converted(from data: Data) -> DarkSkyResponse? {
+        let decoder = JSONDecoder()
+        decoder.dateDecodingStrategy = .secondsSince1970
+        do {
+            let response = try decoder.decode(DarkSkyResponse.self, from: data)
             return response
         } catch {
             return nil
