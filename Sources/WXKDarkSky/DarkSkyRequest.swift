@@ -1,20 +1,23 @@
 //
-//  WXKDarkSkyRequest.swift
+//  DarkSkyRequest.swift
 //  WXKDarkSky
 //
-//  © 2018 Loop Weather Services LLC. Licensed under the MIT License.
+//  © 2019 Loop Weather Services LLC. Licensed under the MIT License.
 //
 //  Please see the included LICENSE file for details.
 //
 
 import Foundation
 
-/// The WXKDarkSkyRequest class contains some networking utilities for working with the Dark Sky API. You initialize this class with your Dark Sky API key, like so:
+@available(*, deprecated, renamed: "DarkSkyRequest")
+public typealias WXKDarkSkyRequest = DarkSkyRequest
+
+/// The DarkSkyRequest class contains some networking utilities for working with the Dark Sky API. You initialize this class with your Dark Sky API key, like so:
 /// ```swift
-/// WXKDarkSkyRequest(key: "YOUR KEY HERE").loadData(...)
+/// DarkSkyRequest(key: "YOUR KEY HERE").loadData(...)
 /// ```
 /// - warning: This class should **never** be used in client-side code. Doing so puts your API key at risk of being compromised, and should your API key be compromised, there is no way to reset your API key without breaking deployed client-side code with the old key. Instead, use a server-side solution to obtain data from the Dark Sky API.
-public class WXKDarkSkyRequest {
+public class DarkSkyRequest {
     /// Your Dark Sky API key.
     var key: String
 
@@ -27,7 +30,7 @@ public class WXKDarkSkyRequest {
     /// - parameter time: The time for a Time Machine request; defaults to nil for current data.
     /// - parameter options: A set of options for fulfilling the request, such as units and language.
     /// - parameter completionHandler: A code block to handle the successful completion, or errors in completion, of the request.
-    public func loadData(point: Point, time: Date? = nil, options: Options = Options.defaults, completionHandler: @escaping (WXKDarkSkyResponse?, Error?) -> Void) {
+    public func loadData(point: Point, time: Date? = nil, options: Options = Options.defaults, completionHandler: @escaping (DarkSkyResponse?, Error?) -> Void) {
         // Set up a data task variable.
         var dataTask: URLSessionDataTask?
 
@@ -35,7 +38,7 @@ public class WXKDarkSkyRequest {
         dataTask?.cancel()
 
         // Build a Dark Sky API URL.
-        let url = buildDarkSkyURL(point: point, time: time, options: options)
+        let url = buildURL(point: point, time: time, options: options)
 
         if let url = url {
             // Set up a URL load request.
@@ -44,38 +47,50 @@ public class WXKDarkSkyRequest {
                 if let error = error {
                     completionHandler(nil, error)
                 } else if let data = data, let response = response as? HTTPURLResponse, response.statusCode == 200 {
-                    // Successfully retrieved data from the Dark Sky API.
-                    let decoder = JSONDecoder()
-                    decoder.dateDecodingStrategy = .secondsSince1970
-
-                    do {
-                        // Attempt to decode the response into a WXKDarkSkyResponse object.
-                        let decoded = try decoder.decode(WXKDarkSkyResponse.self, from: data)
-                        completionHandler(decoded, nil)
-                    } catch {
-                        // Something was wrong with the response such that it could not be decoded.
-                        completionHandler(nil, WXKDarkSkyError.malformedResponse)
+                    if let darkSkyResponse = DarkSkyResponse(data: data) {
+                        completionHandler(darkSkyResponse, nil)
+                    } else {
+                        completionHandler(nil, DarkSkyError.malformedResponse)
                     }
                 } else {
                     // ...something went wrong? Received data, but the status code was not 200 (OK).
-                    completionHandler(nil, WXKDarkSkyError.couldNotRetrieveData)
+                    completionHandler(nil, DarkSkyError.couldNotRetrieveData)
                 }
             })
 
             dataTask?.resume()
         } else {
             // Some error occurred in...generating the URL. The circumstances behind this are so unlikely that this will likely never be called, but it's helpful to open a door to handle it.
-            completionHandler(nil, WXKDarkSkyError.unspecified)
+            completionHandler(nil, DarkSkyError.unspecified)
         }
     }
-
-    /// Builds a URL for a Dark Sky API requests.
-    /// - parameter key: The API key to use for the request.
-    /// - parameter point: A latitude-longitude pair for the request.
-    /// - parameter time: If present, the time for a Time Machine request before or after the current time.
-    /// - parameter options: Options to use for the request.
-    /// - returns: If a URL can be created, returns a `URL`. If not, returns nil.
+    
+    /**
+     Builds a URL for a Dark Sky API requests.
+     
+     - note: This method is deprecated in WXKDarkSky 2.4.0 and will be removed in a future release. Use `buildURL(point:time:options:) instead.
+     
+     - parameter key: The API key to use for the request.
+     - parameter point: A latitude-longitude pair for the request.
+     - parameter time: If present, the time for a Time Machine request before or after the current time.
+     - parameter options: Options to use for the request.
+     - returns: If a URL can be created, returns a `URL`. If not, returns nil.
+     */
+    @available(*, deprecated, renamed: "buildURL(point:time:options:)")
     public func buildDarkSkyURL(point: Point, time: Date? = nil, options: Options = Options.defaults) -> URL? {
+        return buildURL(point: point, time: time, options: options)
+    }
+
+    /**
+     Builds a URL for a Dark Sky API requests.
+     
+     - parameter key: The API key to use for the request.
+     - parameter point: A latitude-longitude pair for the request.
+     - parameter time: If present, the time for a Time Machine request before or after the current time.
+     - parameter options: Options to use for the request.
+     - returns: If a URL can be created, returns a `URL`. If not, returns nil.
+    */
+    public func buildURL(point: Point, time: Date? = nil, options: Options = Options.defaults) -> URL? {
         /// String describing the requested latitude-longitude pair.
         let coordinates = String(describing: point)
 

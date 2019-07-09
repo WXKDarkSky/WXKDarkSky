@@ -2,14 +2,14 @@
 //  Language.swift
 //  WXKDarkSky
 //
-//  © 2018 Loop Weather Services LLC. Licensed under the MIT License.
+//  © 2019 Loop Weather Services LLC. Licensed under the MIT License.
 //
 //  Please see the included LICENSE file for details.
 //
 
 import Foundation
 
-extension WXKDarkSkyRequest {
+extension DarkSkyRequest {
     /// Languages supported by the Dark Sky API.
     public enum Language: String, CustomStringConvertible {
         /// Indicates that a Dark Sky request should be handled in the Arabic language.

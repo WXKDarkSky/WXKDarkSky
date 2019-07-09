@@ -2,14 +2,14 @@
 //  Units.swift
 //  WXKDarkSky
 //
-//  © 2018 Loop Weather Services LLC. Licensed under the MIT License.
+//  © 2019 Loop Weather Services LLC. Licensed under the MIT License.
 //
 //  Please see the included LICENSE file for details.
 //
 
 import Foundation
 
-extension WXKDarkSkyRequest {
+extension DarkSkyRequest {
     /// Sets of units supported by the Dark Sky API.
     public enum Units: String, CustomStringConvertible {
         /// Automatically determine units based on location.
