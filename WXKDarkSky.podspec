@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 
   s.name         = "WXKDarkSky"
-  s.version      = "2.4.1"
+  s.version      = "3.0.0"
   s.summary      = "A pure-Swift Codable layer over the Dark Sky API."
   s.description  = <<-DESC
                    WXKDarkSky is a simple library written completely in Swift that
