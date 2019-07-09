@@ -9,12 +9,12 @@
     </a>
 </p>
 
-This Swift package is a `Codable` layer over the Dark Sky API for quick and easy access to API response objects. It’s super straightforward and directly modeled after the [Dark Sky API docs](https://darksky.net/dev/docs/response). We use it in Loop Weather 2, and we thought others might find it helpful.
+This Swift package is a `Codable` layer over the Dark Sky API for quick and easy access to API response objects. It’s super straightforward and directly modeled after the [Dark Sky API docs](https://darksky.net/dev/docs/response). We use it in Loop Weather, and we thought others might find it helpful.
 
 It also has some helpful basic networking functionality for requesting data from the Dark Sky API. It might not fully satisfy your networking needs, but it’s written in pure Swift, so you don’t need to worry about conflicting dependencies or anything like that. If the networking functionality in this package doesn’t cut it, you’re free to handle networking yourself and pass responses to the Codable class, `WXKDarkSkyResponse`.
 
 ## Compatibility
-WXKDarkSky should work great with all versions of Swift 4, from 4.0 to 4.2 beta.
+WXKDarkSky should work great with Swift 5.
 
 ## Installation
 
@@ -23,7 +23,7 @@ Of course, you'll need to add this package as a dependency in Swift Package Mana
 
 For Swift 4's Package Manager tools:
 
-    .package(url: "https://github.com/loopwxservices/WXKDarkSky.git", from: "2.2.0")
+    .package(url: "https://github.com/loopwxservices/WXKDarkSky.git", from: "2.3.0")
 
 Then, just be sure to add `"WXKDarkSky"` as a dependency in the `targets` section.
 
@@ -31,7 +31,7 @@ Then, just be sure to add `"WXKDarkSky"` as a dependency in the `targets` sectio
 Adding WXKDarkSky via CocoaPods is super-simple. Just add this line to your Podfile:
 
 ```ruby
-pod 'WXKDarkSky', '~> 2.2.0'
+pod 'WXKDarkSky', '~> 2.3.0'
 ```
 
 ### Carthage
