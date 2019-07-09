@@ -5,7 +5,7 @@
         <img src="http://img.shields.io/badge/license-MIT-brightgreen.svg" alt="MIT License">
     </a>
     <a href="https://swift.org">
-        <img src="https://img.shields.io/badge/swift-4.0%20%7C%204.1%20%7C%204.2-brightgreen.svg" alt="Swift 4.0, Swift 4.1, Swift 4.2">
+        <img src="https://img.shields.io/badge/swift-5.0-brightgreen.svg" alt="Swift 5.0">
     </a>
 </p>
 
