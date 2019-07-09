@@ -1,15 +1,14 @@
 os:
   - osx
   - linux
-osx_image: xcode10.1
+osx_image: xcode10.2
 language: generic
 sudo: required
 dist: trusty
 
 env:
   global:
-    - SWIFT_VERSION=4.1.2
-    - SWIFT_VERSION=4.2
+    - SWIFT_VERSION=5.0.1
   matrix:
     - SWIFTPM_TEST=true
     - XCODE_TEST_SDK=macosx
@@ -36,4 +35,3 @@ script:
 - if [ -n "$XCODE_BUILD_SDK" ] || [ -n "$XCODE_TEST_SDK" ]; then swift package generate-xcodeproj; fi
 - if [ -n "$XCODE_BUILD_SDK" ]; then xcodebuild -project WXKDarkSky.xcodeproj -scheme WXKDarkSky-Package build -sdk $XCODE_BUILD_SDK; fi
 - if [ -n "$XCODE_TEST_SDK" ]; then xcodebuild -project WXKDarkSky.xcodeproj -scheme WXKDarkSky-Package test -sdk $XCODE_TEST_SDK; fi
-

@@ -23,7 +23,7 @@ Of course, you'll need to add this package as a dependency in Swift Package Mana
 
 For Swift 4's Package Manager tools:
 
-    .package(url: "https://github.com/loopwxservices/WXKDarkSky.git", from: "2.4.0")
+    .package(url: "https://github.com/loopwxservices/WXKDarkSky.git", from: "3.0.0")
 
 Then, just be sure to add `"WXKDarkSky"` as a dependency in the `targets` section.
 
@@ -31,7 +31,7 @@ Then, just be sure to add `"WXKDarkSky"` as a dependency in the `targets` sectio
 Adding WXKDarkSky via CocoaPods is super-simple. Just add this line to your Podfile:
 
 ```ruby
-pod 'WXKDarkSky', '~> 2.4.0'
+pod 'WXKDarkSky', '~> 3.0.0'
 ```
 
 ### Carthage

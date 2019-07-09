@@ -9,27 +9,31 @@
 
 import Foundation
 
-@available(*, deprecated, renamed: "DarkSkyRequest")
-public typealias WXKDarkSkyRequest = DarkSkyRequest
-
-/// The DarkSkyRequest class contains some networking utilities for working with the Dark Sky API. You initialize this class with your Dark Sky API key, like so:
-/// ```swift
-/// DarkSkyRequest(key: "YOUR KEY HERE").loadData(...)
-/// ```
-/// - warning: This class should **never** be used in client-side code. Doing so puts your API key at risk of being compromised, and should your API key be compromised, there is no way to reset your API key without breaking deployed client-side code with the old key. Instead, use a server-side solution to obtain data from the Dark Sky API.
-public class DarkSkyRequest {
+/**
+ The DarkSkyRequest class contains some networking utilities for working with the Dark Sky API.
+ 
+ You initialize this class with your Dark Sky API key, like so:
+ ```swift
+ DarkSkyRequest(key: "YOUR KEY HERE").loadData(...)
+ ```
+ - warning: This class should **never** be used in client-side code. Doing so puts your API key at risk of being compromised, and should your API key be compromised, there is no way to reset your API key without breaking deployed client-side code with the old key. Instead, use a server-side solution to obtain data from the Dark Sky API.
+*/
+public final class DarkSkyRequest {
     /// Your Dark Sky API key.
-    var key: String
+    private var key: String
 
     public init(key: String) {
         self.key = key
     }
 
-    /// Loads data from the Dark Sky API for a given point and set of options.
-    /// - parameter point: The latitude-longitude point for the data request.
-    /// - parameter time: The time for a Time Machine request; defaults to nil for current data.
-    /// - parameter options: A set of options for fulfilling the request, such as units and language.
-    /// - parameter completionHandler: A code block to handle the successful completion, or errors in completion, of the request.
+    /**
+     Loads data from the Dark Sky API for a given point and set of options.
+     
+     - parameter point: The latitude-longitude point for the data request.
+     - parameter time: The time for a Time Machine request; defaults to nil for current data.
+     - parameter options: A set of options for fulfilling the request, such as units and language.
+     - parameter completionHandler: A code block to handle the successful completion, or errors in completion, of the request.
+    */
     public func loadData(point: Point, time: Date? = nil, options: Options = Options.defaults, completionHandler: @escaping (DarkSkyResponse?, Error?) -> Void) {
         // Set up a data task variable.
         var dataTask: URLSessionDataTask?
@@ -63,22 +67,6 @@ public class DarkSkyRequest {
             // Some error occurred in...generating the URL. The circumstances behind this are so unlikely that this will likely never be called, but it's helpful to open a door to handle it.
             completionHandler(nil, DarkSkyError.unspecified)
         }
-    }
-    
-    /**
-     Builds a URL for a Dark Sky API requests.
-     
-     - note: This method is deprecated in WXKDarkSky 2.4.0 and will be removed in a future release. Use `buildURL(point:time:options:) instead.
-     
-     - parameter key: The API key to use for the request.
-     - parameter point: A latitude-longitude pair for the request.
-     - parameter time: If present, the time for a Time Machine request before or after the current time.
-     - parameter options: Options to use for the request.
-     - returns: If a URL can be created, returns a `URL`. If not, returns nil.
-     */
-    @available(*, deprecated, renamed: "buildURL(point:time:options:)")
-    public func buildDarkSkyURL(point: Point, time: Date? = nil, options: Options = Options.defaults) -> URL? {
-        return buildURL(point: point, time: time, options: options)
     }
 
     /**
