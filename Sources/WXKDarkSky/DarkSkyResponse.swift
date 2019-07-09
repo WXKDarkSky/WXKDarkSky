@@ -9,7 +9,7 @@
 
 import Foundation
 
-/// The `DarkSkyResponse` struct contains support for quick Swift-based encoding/decoding of responses from the Dark Sky API.
+/// The DarkSkyResponse struct contains support for encoding/decoding of JSON responses from the Dark Sky API.
 public struct DarkSkyResponse: Codable {
     /// The requested point's latitude.
     public var latitude: Double
