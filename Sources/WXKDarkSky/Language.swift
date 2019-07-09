@@ -20,6 +20,8 @@ extension WXKDarkSkyRequest {
         case belarusian = "be"
         /// Indicates that a Dark Sky request should be handled in the Bulgarian language.
         case bulgarian = "bg"
+        /// Indicates that a Dark Sky request should be handled in the Bengali language.
+        case bengali = "bn"
         /// Indicates that a Dark Sky request should be handled in the Bosnian language.
         case bosnian = "bs"
         /// Indicates that a Dark Sky request should be handled in the Catalan language.
@@ -34,6 +36,8 @@ extension WXKDarkSkyRequest {
         case greek = "el"
         /// Indicates that a Dark Sky request should be handled in the English language.
         case english = "en"
+        /// Indicates that a Dark Sky request should be handled in the Esperanto language.
+        case esperanto = "eo"
         /// Indicates that a Dark Sky request should be handled in the Spanish language.
         case spanish = "es"
         /// Indicates that a Dark Sky request should be handled in the Estonian language.
@@ -46,6 +50,8 @@ extension WXKDarkSkyRequest {
         case hebrew = "he"
         /// Indicates that a Dark Sky request should be handled in the Croatian language.
         case croatian = "hr"
+        /// Indicates that a Dark Sky request should be handled in the Hungarian language.
+        case hungarian = "hu"
         /// Indicates that a Dark Sky request should be handled in the Indonesian language.
         case indonesian = "id"
         /// Indicates that a Dark Sky request should be handled in the Icelandic language.
@@ -56,10 +62,18 @@ extension WXKDarkSkyRequest {
         case japanese = "ja"
         /// Indicates that a Dark Sky request should be handled in the Georgian language.
         case georgian = "ka"
+        /// Indicates that a Dark Sky request should be handled in the Kannada language.
+        case kannada = "kn"
         /// Indicates that a Dark Sky request should be handled in the Korean language.
         case korean = "ko"
         /// Indicates that a Dark Sky request should be handled in the Cornish language.
         case cornish = "kw"
+        /// Indicates that a Dark Sky request should be handled in the Latvian language.
+        case latvian = "lv"
+        /// Indicates that a Dark Sky request should be handled in the Malayam language.
+        case malayam = "ml"
+        /// Indicates that a Dark Sky request should be handled in the Malayam language.
+        case marathi = "mr"
         /// Indicates that a Dark Sky request should be handled in the Bokmål language.
         case norwegianBokmal = "nb"
         /// Indicates that a Dark Sky request should be handled in the Dutch language.
@@ -80,12 +94,18 @@ extension WXKDarkSkyRequest {
         case serbian = "sr"
         /// Indicates that a Dark Sky request should be handled in the Swedish language.
         case swedish = "sv"
+        /// Indicates that a Dark Sky request should be handled in the Tamil language.
+        case tamil = "ta"
+        /// Indicates that a Dark Sky request should be handled in the Telugu language.
+        case telugu = "te"
         /// Indicates that a Dark Sky request should be handled in the Tetum language.
         case tetum = "tet"
         /// Indicates that a Dark Sky request should be handled in the Turkish language.
         case turkish = "tr"
         /// Indicates that a Dark Sky request should be handled in the Ukrainian language.
         case ukrainian = "uk"
+        /// Indicates that a Dark Sky request should be handled in the Urdu language.
+        case urdu = "ur"
         /// Indicatesyay atthay ayay Arkday Yskay equestray ouldshay ebay andledhay inyay Igpay Atinlay.
         case pigLatin = "x-pig-latin"
         /// Indicates that a Dark Sky request should be handled in simplified Chinese.
