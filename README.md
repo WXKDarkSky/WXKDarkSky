@@ -23,7 +23,7 @@ Of course, you'll need to add this package as a dependency in Swift Package Mana
 
 For Swift 4's Package Manager tools:
 
-    .package(url: "https://github.com/loopwxservices/WXKDarkSky.git", from: "3.0.0")
+    .package(url: "https://github.com/loopwxservices/WXKDarkSky.git", from: "3.1.0")
 
 Then, just be sure to add `"WXKDarkSky"` as a dependency in the `targets` section.
 
@@ -31,11 +31,11 @@ Then, just be sure to add `"WXKDarkSky"` as a dependency in the `targets` sectio
 Adding WXKDarkSky via CocoaPods is super-simple. Just add this line to your Podfile:
 
 ```ruby
-pod 'WXKDarkSky', '~> 3.0.0'
+pod 'WXKDarkSky', '~> 3.1.0'
 ```
 
 ### Carthage
-We do not currently provide official support for installation via Carthage. However, there is a decent chance that it works out of the box. If interest warrants, we'll be happy to add official support.
+We do not currently provide official support for installation via Carthage. However, there is a decent chance that it works out of the box.
 
 ### Manual
 Just get the source files out of the Sources folder and drag them into your Xcode project, and add them to any relevant targets. Just make sure to keep updated should changes be made to the Dark Sky API.
@@ -95,7 +95,7 @@ DarkSkyRequest.loadData(point: point, options: options) { (response, error) in
 As before, handle the results as in the "Without networking" section.
 
 ### Without networking
-If you use other networking code, using DarkSky is still very simple:
+If you use other networking code, using WXKDarkSky is still very simple:
 
 ```swift
 if let response = DarkSkyResponse(data: data) {
