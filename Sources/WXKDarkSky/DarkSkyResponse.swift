@@ -55,28 +55,6 @@ public struct DarkSkyResponse: Codable {
             return nil
         }
     }
-
-    /**
-     Converts Dark Sky response JSON into a DarkSkyResponse struct, if possible.
-     
-     This method will fail if the Dark Sky JSON provided to it cannot be decoded by a `JSONDecoder` into a `DarkSkyResponse` object for whatever reason, such as an incomplete download or other badly formatted JSON.
-     
-     - note: This method is deprecated in WXKDarkSky 2.4.0 and will be removed in a future release. Instead, use `init(data:)`. Thus, any instances of `WXKDarkSkyResponse.converted(from: Data)` can be replaced with `DarkSkyResponse(data: Data)`.
-     
-     - parameter data: Dark Sky JSON `Data` to be converted.
-     - returns: If the conversion was successful, the method returns a DarkSkyReponse struct. Otherwise, the method will return nil.
-    */
-    @available(*, deprecated, message: "converted(from:) is deprecated and will be removed in a future release. Please use init(data:) instead.")
-    public static func converted(from data: Data) -> DarkSkyResponse? {
-        let decoder = JSONDecoder()
-        decoder.dateDecodingStrategy = .secondsSince1970
-        do {
-            let response = try decoder.decode(DarkSkyResponse.self, from: data)
-            return response
-        } catch {
-            return nil
-        }
-    }
 }
 
 /// The `DarkSkyDataPoint` struct encapsulates information about the weather at a given time from the Dark Sky API. All properties except `time` are optional.
