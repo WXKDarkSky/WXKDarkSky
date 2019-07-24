@@ -82,6 +82,9 @@ public struct DarkSkyResponse: Codable {
     }
 }
 
+@available(*, deprecated, renamed: "DarkSkyDataPoint")
+public typealias WXKDarkSkyDataPoint = DarkSkyDataPoint
+
 /// The `DarkSkyDataPoint` struct encapsulates information about the weather at a given time from the Dark Sky API. All properties except `time` are optional.
 public struct DarkSkyDataPoint: Codable {
     /// The UNIX time representing the beginning of the data point. For example, for current data points, this is the current time, and for daily data points, it's midnight. This property is required.
@@ -158,6 +161,9 @@ public struct DarkSkyDataPoint: Codable {
     public var windSpeed: Double?
 }
 
+@available(*, deprecated, renamed: "DarkSkyDataBlock")
+public typealias WXKDarkSkyDataBlock = DarkSkyDataBlock
+
 /// The `DarkSkyDataBlock` struct contains an array of data points for a period of time, such as hourly forecasts for the next 2 days or daily forecasts for the next week.
 public struct DarkSkyDataBlock: Codable {
     /// An array of data points for the data block. This is required (but could be empty).
@@ -167,6 +173,9 @@ public struct DarkSkyDataBlock: Codable {
     /// An icon name from Dark Sky summarizing the data block.
     public var icon: String?
 }
+
+@available(*, deprecated, renamed: "DarkSkyFlags")
+public typealias WXKDarkSkyFlags = DarkSkyFlags
 
 /// The `DarkSkyFlags` struct contains metadata about your forecast request.
 public struct DarkSkyFlags: Codable {
@@ -179,6 +188,9 @@ public struct DarkSkyFlags: Codable {
     /// The units supplied in the request.
     public var units: String
 }
+
+@available(*, deprecated, renamed: "DarkSkyAlert")
+public typealias WXKDarkSkyAlert = DarkSkyAlert
 
 /// The `DarkSkyAlert` struct contains information about a hypothetical alert in effect at the time of the forecast request.
 public struct DarkSkyAlert: Codable {
