@@ -5,3 +5,5 @@ Packages/
 xcuserdata/
 *.xccheckout
 xcshareddata/
+docs/
+build/

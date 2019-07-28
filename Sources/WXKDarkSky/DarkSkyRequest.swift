@@ -22,6 +22,13 @@ public final class DarkSkyRequest {
     /// Your Dark Sky API key.
     private var key: String
 
+    /**
+     Initializes the `DarkSkyRequest` object with the provided API key.
+     
+     - warning: This initializer should **never** be called in client-side code. Doing so puts your API key at risk of being compromised, and should your API key be compromised, there is no way to reset your API key without breaking deployed client-side code with the old key. Instead, use a server-side solution to obtain data from the Dark Sky API.
+     
+     - parameter key: The API key to use for requests originating from this instance.
+     */
     public init(key: String) {
         self.key = key
     }
