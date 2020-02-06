@@ -2,7 +2,7 @@
 //  DarkSkyRequest.swift
 //  WXKDarkSky
 //
-//  © 2019 Loop Weather Services LLC. Licensed under the MIT License.
+//  © 2020; MIT License.
 //
 //  Please see the included LICENSE file for details.
 //
@@ -41,39 +41,9 @@ public final class DarkSkyRequest {
      - parameter options: A set of options for fulfilling the request, such as units and language.
      - parameter completionHandler: A code block to handle the successful completion, or errors in completion, of the request.
     */
+    @available(*, unavailable, message: "Networking functionality has been removed and will not return data. Please use your own networking code to obtain data")
     public func loadData(point: Point, time: Date? = nil, options: Options = Options.defaults, completionHandler: @escaping (DarkSkyResponse?, Error?) -> Void) {
-        // Set up a data task variable.
-        var dataTask: URLSessionDataTask?
-
-        // If there's an ongoing data task, cancel it.
-        dataTask?.cancel()
-
-        // Build a Dark Sky API URL.
-        let url = buildURL(point: point, time: time, options: options)
-
-        if let url = url {
-            // Set up a URL load request.
-            let session = URLSession(configuration: .default)
-            dataTask = session.dataTask(with: url, completionHandler: { data, response, error in
-                if let error = error {
-                    completionHandler(nil, error)
-                } else if let data = data, let response = response as? HTTPURLResponse, response.statusCode == 200 {
-                    if let darkSkyResponse = DarkSkyResponse(data: data) {
-                        completionHandler(darkSkyResponse, nil)
-                    } else {
-                        completionHandler(nil, DarkSkyError.malformedResponse)
-                    }
-                } else {
-                    // ...something went wrong? Received data, but the status code was not 200 (OK).
-                    completionHandler(nil, DarkSkyError.couldNotRetrieveData)
-                }
-            })
-
-            dataTask?.resume()
-        } else {
-            // Some error occurred in...generating the URL. The circumstances behind this are so unlikely that this will likely never be called, but it's helpful to open a door to handle it.
-            completionHandler(nil, DarkSkyError.unspecified)
-        }
+        completionHandler(nil, DarkSkyError.removedNetworkingFunctionality)
     }
 
     /**
