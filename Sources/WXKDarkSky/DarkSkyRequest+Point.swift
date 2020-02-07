@@ -1,8 +1,8 @@
 //
-//  Point.swift
+//  DarkSkyRequest+Point.swift
 //  WXKDarkSky
 //
-//  © 2019 Loop Weather Services LLC. Licensed under the MIT License.
+//  © 2020; MIT License.
 //
 //  Please see the included LICENSE file for details.
 //
