@@ -11,12 +11,8 @@ import Foundation
 
 /**
  The DarkSkyRequest class contains some networking utilities for working with the Dark Sky API.
- 
- You initialize this class with your Dark Sky API key, like so:
- ```swift
- DarkSkyRequest(key: "YOUR KEY HERE").loadData(...)
- ```
- - warning: This class should **never** be used in client-side code. Doing so puts your API key at risk of being compromised, and should your API key be compromised, there is no way to reset your API key without breaking deployed client-side code with the old key. Instead, use a server-side solution to obtain data from the Dark Sky API.
+  
+ - warning: Do **not** use this to make client-side requests directly to the Dark Sky API! This can put your API key at risk of compromise, and leave you with no way to replace your API key should it become compromised.
 */
 public final class DarkSkyRequest {
     /// Your Dark Sky API key.
@@ -25,7 +21,7 @@ public final class DarkSkyRequest {
     /**
      Initializes the `DarkSkyRequest` object with the provided API key.
      
-     - warning: This initializer should **never** be called in client-side code. Doing so puts your API key at risk of being compromised, and should your API key be compromised, there is no way to reset your API key without breaking deployed client-side code with the old key. Instead, use a server-side solution to obtain data from the Dark Sky API.
+     - warning: Do **not** use this to make client-side requests directly to the Dark Sky API! This can put your API key at risk of compromise, and leave you with no way to replace your API key should it become compromised.
      
      - parameter key: The API key to use for requests originating from this instance.
      */
@@ -33,21 +29,15 @@ public final class DarkSkyRequest {
         self.key = key
     }
 
-    /**
-     Loads data from the Dark Sky API for a given point and set of options.
-     
-     - parameter point: The latitude-longitude point for the data request.
-     - parameter time: The time for a Time Machine request; defaults to nil for current data.
-     - parameter options: A set of options for fulfilling the request, such as units and language.
-     - parameter completionHandler: A code block to handle the successful completion, or errors in completion, of the request.
-    */
     @available(*, unavailable, message: "Networking functionality has been removed and will not return data. Please use your own networking code to obtain data.")
     public func loadData(point: Point, time: Date? = nil, options: Options = Options.defaults, completionHandler: @escaping (DarkSkyResponse?, Error?) -> Void) {
         completionHandler(nil, DarkSkyError.removedNetworkingFunctionality)
     }
 
     /**
-     Builds a URL for a Dark Sky API requests.
+     Builds a URL for a Dark Sky API request.
+     
+     - warning: Do **not** use this to make client-side requests directly to the Dark Sky API! This can put your API key at risk of compromise, and leave you with no way to replace your API key should it become compromised.
      
      - parameter key: The API key to use for the request.
      - parameter point: A latitude-longitude pair for the request.
