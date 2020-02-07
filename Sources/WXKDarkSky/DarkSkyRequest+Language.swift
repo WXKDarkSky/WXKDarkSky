@@ -28,6 +28,8 @@ extension DarkSkyRequest {
         case catalan = "ca"
         /// Indicates that a Dark Sky request should be handled in the Czech language.
         case czech = "cs"
+        /// Indicates that a Dark Sky request should be handled in Welsh.
+        case welsh = "cy"
         /// Indicates that a Dark Sky request should be handled in the Danish language.
         case danish = "da"
         /// Indicates that a Dark Sky request should be handled in the German language.
@@ -46,6 +48,8 @@ extension DarkSkyRequest {
         case finnish = "fi"
         /// Indicates that a Dark Sky request should be handled in the French language.
         case french = "fr"
+        /// Indicates that a Dark Sky request should be handled in Scottish Gaelic.
+        case scottishGaelic = "gd"
         /// Indicates that a Dark Sky request should be handled in the Hebrew language.
         case hebrew = "he"
         /// Indicates that a Dark Sky request should be handled in the Croatian language.
@@ -106,6 +110,8 @@ extension DarkSkyRequest {
         case ukrainian = "uk"
         /// Indicates that a Dark Sky request should be handled in the Urdu language.
         case urdu = "ur"
+        /// Indicates that a Dark Sky request should be handled in Vietnamese.
+        case vietnamese = "vi"
         /// Indicatesyay atthay ayay Arkday Yskay equestray ouldshay ebay andledhay inyay Igpay Atinlay.
         case pigLatin = "x-pig-latin"
         /// Indicates that a Dark Sky request should be handled in simplified Chinese.
