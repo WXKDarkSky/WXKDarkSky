@@ -1,5 +1,5 @@
 //
-//  Language.swift
+//  DarkSkyRequest+Language.swift
 //  WXKDarkSky
 //
 //  © 2020; MIT License.
