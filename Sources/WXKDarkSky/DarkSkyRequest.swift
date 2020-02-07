@@ -41,7 +41,7 @@ public final class DarkSkyRequest {
      - parameter options: A set of options for fulfilling the request, such as units and language.
      - parameter completionHandler: A code block to handle the successful completion, or errors in completion, of the request.
     */
-    @available(*, unavailable, message: "Networking functionality has been removed and will not return data. Please use your own networking code to obtain data")
+    @available(*, unavailable, message: "Networking functionality has been removed and will not return data. Please use your own networking code to obtain data.")
     public func loadData(point: Point, time: Date? = nil, options: Options = Options.defaults, completionHandler: @escaping (DarkSkyResponse?, Error?) -> Void) {
         completionHandler(nil, DarkSkyError.removedNetworkingFunctionality)
     }
