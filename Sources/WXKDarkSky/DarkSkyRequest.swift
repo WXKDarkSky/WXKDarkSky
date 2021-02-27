@@ -8,6 +8,9 @@
 //
 
 import Foundation
+#if canImport(FoundationNetworking)
+import FoundationNetworking
+#endif
 
 /**
  The DarkSkyRequest class contains some networking utilities for working with the Dark Sky API.
